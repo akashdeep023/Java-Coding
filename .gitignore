@@ -1,0 +1,5 @@
+# Remove all .class files
+*.class
+
+# Remove this folder
+Java_Programming_Language
