@@ -14,6 +14,14 @@
 
 // / -> (Forward slash)
 // \ -> (Back slash)
+// ; -> (Statement terminator)
+// : -> (Colon)
+// - -> (Hyphen)
+// () -> (Parenthesis)
+// {} -> (Curly bracket)
+// [] -> (Square bracket)
+// '' -> (Apostrophes)
+// "" ->(Quatations)
 // ----------------------------------------------------------------
 
 // Sum of 2 numbers--------------------------------
