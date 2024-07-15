@@ -20,22 +20,22 @@
 🎗️ 16-2D_Arrays \
 🎗️ 17-Strings \
 🎗️ 18-Bits_Manipulation \
-🎗️ 19-Object*Oriented_Programming*(OOPs) \
+🎗️ 19-Object_Oriented_Programming\_(OOPs) \
 🎗️ 20-Recursion_Basics \
 🎗️ 21-Divide\_&_Conquer \
 🎗️ 22-Time\_&_Space_Complexity \
 🎗️ 23-Backtracking \
 🎗️ 24-Array_List \
-🎗️ 25-Linked*List*(Part-I) \
-🎗️ 26-Linked*List*(Part-II) \
+🎗️ 25-Linked_List\_(Part-I) \
+🎗️ 26-Linked_List\_(Part-II) \
 🎗️ 27-Stacks \
 🎗️ 28-Queues \
 🎗️ 29-Greedy_Algorithms \
-🎗️ 30-Binary*Trees*(Part-I) \
-🎗️ 31-Binary*Trees*(Part-II) \
-🎗️ 32-Binary*Trees*(Part-III) \
-🎗️ 33-Binary*Search_Trees*(Part-I) \
-🎗️ 34-Binary*Search_Trees*(Part-II) \
+🎗️ 30-Binary_Trees\_(Part-I) \
+🎗️ 31-Binary_Trees\_(Part-II) \
+🎗️ 32-Binary_Trees\_(Part-III) \
+🎗️ 33-Binary_Search_Trees\_(Part-I) \
+🎗️ 34-Binary_Search_Trees\_(Part-II) \
 🎗️ 35-Heaps \
 🎗️ 36-Hashing \
 🎗️ 37-Tries \
@@ -56,7 +56,7 @@
 
 ---
 
-**5 additional chapters in Alpha Plus**
+**5 Additional chapters in Alpha Plus**
 
 💫 06. Community_Link \
 💫 07. Extra_Resources \
