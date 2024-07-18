@@ -43,6 +43,72 @@ public class Function_Method {
         return bin_coefficient;
     }
 
+    // function overloading using no of parameters
+    public static int sum(int a, int b) {
+        return a + b;
+    }
+
+    public static int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // function overloading using data type of parameters
+    public static int product(int a, int b) {
+        return a * b;
+    }
+
+    public static float product(float a, float b) {
+        return a * b;
+    }
+
+    public static boolean isPrime(int n) {
+        if (n == 2) {
+            return true;
+        }
+        for (int i = 2; i <= Math.sqrt(n); i++) { // loop run -> n-1 times, optimized -> Math.sqrt(n) times
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void primesIsRange(int n) {
+        for (int i = 2; i <= n; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void binToDec(int binNum) {
+        int myNum = binNum;
+        int pow = 0;
+        int decNum = 0;
+        while (binNum > 0) {
+            int lastDigit = binNum % 10;
+            decNum = decNum + (lastDigit * (int) Math.pow(2, pow));
+            pow++;
+            binNum = binNum / 10;
+        }
+        System.out.println("Binary to Decimal " + myNum + " = " + decNum);
+    }
+
+    public static void decToBin(int decNum) {
+        int myNum = decNum;
+        int pow = 0;
+        int binNum = 0;
+        while (decNum > 0) {
+            int rem = decNum % 2;
+            binNum = binNum + (rem * (int) Math.pow(10, pow));
+            pow++;
+            decNum = decNum / 2;
+        }
+        System.out.println("Decimal to Binary " + myNum + " = " + binNum);
+
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         // Introduction to function --------------------------------
@@ -102,11 +168,65 @@ public class Function_Method {
         // System.out.println("Factorial : " + factorial(n));
 
         // Binomial coefficients --------------------------------
-        System.out.print("Enter number of n : ");
-        int n = sc.nextInt();
-        System.out.print("Enter number of r : ");
-        int r = sc.nextInt();
-        System.out.println("Binomial coefficients : " + binCoefficient(n, r));
+        // System.out.print("Enter number of n : ");
+        // int n = sc.nextInt();
+        // System.out.print("Enter number of r : ");
+        // int r = sc.nextInt();
+        // System.out.println("Binomial coefficients : " + binCoefficient(n, r));
+
+        // Inbuilt v/s user defined Methods --------------------------------
+        // user defined functions / methods -> sum(), product(), factorial()
+        // inbuilt methods -> sc.nextInt(), Math.sqrt(), Math.power(), Math.max() etc.
+
+        // Function Overloading --------------------------------
+        // Multiple function with the same name but 'different parameters'. (no of parameter, data type of parameter)
+
+        // Function Overloading  using no of parameters --------------------------------
+        // int a = 2, b = 3, c = 4;
+        // System.out.println(sum(a, b));
+        // System.out.println(sum(a, b, c));
+
+        // Function Overloading  using data type of parameter --------------------------------
+        // int x = 3, y = 5;
+        // System.out.println(product(x, y));
+        // float p = 3.4f, q = 5.2f;
+        // System.out.println(product(p, q));
+
+        // Check if a number is Prime or Not --------------------------------
+        // System.out.println(isPrime(3));
+        // System.out.println(isPrime(12));
+
+        // Prime in range --------------------------------
+        // System.out.print("Enter positive number : ");
+        // int n = sc.nextInt();
+        // primesIsRange(n);
+
+        // Binary to Decimal --------------------------------
+        // Binary number system -> 2 digits (0,1)
+        // Decimal number system -> 10 digits (0,1,2,3,4,5,6,7,8,9)
+
+        // Convert from Binary to Decimal n = 101 
+        binToDec(101);
+
+        // Decimal to Binary --------------------------------
+        // Convert from Binary to Decimal n = 7 
+        decToBin(7);
+
+        // Method scope --------------------------------
+        // define a variable in function -> access only this function && access after defined, not access before defined
+        // Example :-
+        // System.out.println(num); // not access before defined
+        int num = 10;
+        System.out.println(num); // access after defined
+
+        // Block scope --------------------------------
+        // {
+        //     body -> access only this block { } 
+        // }
+        // Example :-
+        // for (int i = 0; i < args.length; i++) {
+        //    i -> access only this for loop, not outside loop
+        // }
 
         sc.close(); // close the scanner
     }
