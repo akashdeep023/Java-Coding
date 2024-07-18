@@ -59,9 +59,9 @@ public class Assignment {
         // int num = sc.nextInt();
         // boolean isPalindrome = isPalindrome(num);
         // if (isPalindrome) {
-        // System.out.println("Number " + num + " is a palindrome");
+        //     System.out.println("Number " + num + " is a palindrome");
         // } else {
-        // System.out.println("Number " + num + " is not a palindrome");
+        //     System.out.println("Number " + num + " is not a palindrome");
         // }
 
         // Question 4 : READ & CODE EXERCISE
