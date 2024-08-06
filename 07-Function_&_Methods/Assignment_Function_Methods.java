@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Assignment {
+public class Assignment_Function_Methods {
     public static double average(double x, double y, double z) {
         return (x + y + z) / 3;
     }

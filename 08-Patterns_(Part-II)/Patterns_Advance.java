@@ -1,4 +1,4 @@
-public class Patterns {
+public class Patterns_Advance {
     public static void hollow_rectangle(int totRows, int totCols) {
         // outer loop
         for (int i = 1; i <= totRows; i++) {

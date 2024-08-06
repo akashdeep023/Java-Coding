@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Assignment {
+public class Assignment_Loops {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         // Question 1 : How many times 'Hello' is printed?

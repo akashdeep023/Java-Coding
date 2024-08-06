@@ -1,4 +1,4 @@
-public class Patterns {
+public class Patterns_Basics {
     public static void main(String[] args) {
         // Intro to Nested Loops (Star pattern) --------------------------------
         // int n = 4;

@@ -1,4 +1,4 @@
-public class Assignment {
+public class Assignment_Sorting {
     // Bubble Sort
     public static void bubbleSort(int arr[]) {
         for (int i = 0; i < arr.length - 1; i++) {

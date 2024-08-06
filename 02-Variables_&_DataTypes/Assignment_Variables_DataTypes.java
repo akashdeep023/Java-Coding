@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-public class Assignment {
-    public static void main(String[] args){
+public class Assignment_Variables_DataTypes {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         // Question 1 : In a program, input 3 numbers : A, B and C. You have to output the average of these 3 numbers.
         // System.out.print("Inter 3 numbers : \nA : ");

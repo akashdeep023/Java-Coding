@@ -1,6 +1,5 @@
 
-
-public class Assignment {
+public class Assignment_Operator {
     public static void main(String[] args) {
         // Question : What will be the output of the following programs :
         // 1. ----------------------------------
@@ -42,10 +41,10 @@ public class Assignment {
 
         // 5. ----------------------------------
         int x = 10, y = 5;
-        int exp1 = (y * (x / y + x / y));   // 5 * (2 + 2) => 20
+        int exp1 = (y * (x / y + x / y)); // 5 * (2 + 2) => 20
         int exp2 = (y * x / y + y * x / y); // 50 / 5 + 50 / 5 => 10 + 10 => 20
         System.out.println(exp1);
-        System.out.println(exp2); 
+        System.out.println(exp2);
         // Output => 20 , 20
 
     }

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Assignment {
+public class Assignment_Conditional {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         // Question 1 : Write a Java program to get a number from the user and print
