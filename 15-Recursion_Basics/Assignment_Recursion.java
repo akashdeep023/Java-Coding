@@ -49,6 +49,7 @@ public class Assignment_Recursion {
 
     }
 
+    // Solution 5 --------------------------------
     public static void towerOfHanoi(int n, String src, String helper, String dest) {
         if (n == 1) {
             System.out.println("transfer disk " + n + " from " + src + " to " + dest);
@@ -57,7 +58,7 @@ public class Assignment_Recursion {
         //transfer top n-1 from src to helper using dest as 'helper'
         towerOfHanoi(n - 1, src, dest, helper);
         //transfer nth from src to dest
-        System.out.println("transfer disk " + n + " from " + src + " to " + helper);
+        System.out.println("transfer disk " + n + " from " + src + " to " + dest);
         //transfer n-1 from helper to dest using src as 'helper'
         towerOfHanoi(n - 1, helper, src, dest);
     }
@@ -92,7 +93,7 @@ public class Assignment_Recursion {
 
         // Question 5 : TOWER OF HANOI (Important!)
         // You have 3 towers and N disks of different sizes which can slide onto any tower. The puzzle starts with disks sorted in ascending order of size from top to bottom (i.e., each disk sits on top of an even larger one).
-        int n = 4;
+        int n = 3;
         towerOfHanoi(n, "A", "B", "C");
 
         // The Solution for this particular question has also been discussed here :
