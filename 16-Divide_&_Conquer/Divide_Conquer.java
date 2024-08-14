@@ -76,6 +76,42 @@ public class Divide_Conquer {
         return i;
     }
 
+    // Search --------------------------------
+    public static int searchSortedRotated(int arr[], int tar, int si, int ei) {
+        // base case
+        if (si > ei) {
+            return -1;
+        }
+        int mid = si + (ei - si) / 2;
+        // target found
+        if (arr[mid] == tar) {
+            return mid;
+        }
+        // min on line 1
+        if (arr[si] <= arr[mid]) {
+            // mid left part
+            if (arr[si] <= tar && tar <= arr[mid]) {
+                return searchSortedRotated(arr, tar, si, mid - 1);
+            }
+            // mid right part
+            else {
+                return searchSortedRotated(arr, tar, mid + 1, ei);
+            }
+        }
+        // mid on line 2
+        else {
+            // mid right part
+            if (arr[mid] <= tar && tar <= arr[ei]) {
+                return searchSortedRotated(arr, tar, mid + 1, ei);
+            }
+            // mid left part
+            else {
+                return searchSortedRotated(arr, tar, si, mid - 1);
+            }
+
+        }
+    }
+
     public static void main(String[] args) {
         // Divide & Conquer -> Algorithms
 
@@ -87,7 +123,14 @@ public class Divide_Conquer {
         // Quick sort algorithm --------------------------------
         quickSort(arr, 0, arr.length - 1); // Average TC -> O(nlogn), Worst Tc -> O(n^2) SC -> O(1)
         printArrays(arr);
+        System.out.println();
         // Worst case -> Worst case occurs when pivot is always the smallest or the largest element. TC -> O(n^2)
 
+        // Sorted & Rotated Arrats Search --------------------------------
+        // Sorted, rotated array with distinct (different) number (in ascending order). It is rotated at a pivot point. Find the index of given element.
+        int arr2[] = { 4, 5, 6, 7, 0, 1, 2 };
+        int target = 0;
+        int tarIdx = searchSortedRotated(arr2, target, 0, arr2.length - 1);
+        System.out.println(tarIdx);
     }
 }
