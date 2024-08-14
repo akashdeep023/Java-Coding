@@ -72,6 +72,7 @@
 ✨ 4. Counting sort algorithm -> `Basic_Sorting_Algorithms Chapter`
 ✨ 5. Inbuilt sort algorithm -> `Basic_Sorting_Algorithms Chapter`
 ✨ 6. Merge sort algorithm -> `Divide\_&_Conquer Chapter`
+✨ 7. Quick sort algorithm -> `Divide\_&_Conquer Chapter`
 
 **Search Algorithms**
 
