@@ -66,15 +66,15 @@
 
 **Sorting Algorithms**
 
-✨ 1. Bubble sort algorithm -> `Basic_Sorting_Algorithms Chapter`
-✨ 2. Selection sort algorithm -> `Basic_Sorting_Algorithms Chapter`
-✨ 3. Insertion sort algorithm -> `Basic_Sorting_Algorithms Chapter`
-✨ 4. Counting sort algorithm -> `Basic_Sorting_Algorithms Chapter`
-✨ 5. Inbuilt sort algorithm -> `Basic_Sorting_Algorithms Chapter`
-✨ 6. Merge sort algorithm -> `Divide\_&_Conquer Chapter`
+✨ 1. Bubble sort algorithm -> `Basic_Sorting_Algorithms Chapter` \
+✨ 2. Selection sort algorithm -> `Basic_Sorting_Algorithms Chapter` \
+✨ 3. Insertion sort algorithm -> `Basic_Sorting_Algorithms Chapter` \
+✨ 4. Counting sort algorithm -> `Basic_Sorting_Algorithms Chapter` \
+✨ 5. Inbuilt sort algorithm -> `Basic_Sorting_Algorithms Chapter` \
+✨ 6. Merge sort algorithm -> `Divide\_&_Conquer Chapter` \
 ✨ 7. Quick sort algorithm -> `Divide\_&_Conquer Chapter`
 
 **Search Algorithms**
 
-✨ 1. Linear search algorithm -> `Arrays Chapter`
+✨ 1. Linear search algorithm -> `Arrays Chapter` \
 ✨ 2. Binary search algorithm -> `Arrays Chapter`
