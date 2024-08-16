@@ -43,6 +43,59 @@ public class Assignment_Divide_Conquer {
     }
 
     // Solution 2. -----------------------------------
+    // Approach 1 - Brute Force Approach
+    // Idea : Count the number of times each number occurs in the array & find the largest count
+    public static int majorityElement(int nums[]) { // TC -> O(n^2)
+        int majorityCount = nums.length / 2;
+        for (int i = 0; i < nums.length; i++) {
+            int count = 0;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] == nums[i]) {
+                    count++;
+                }
+            }
+            if (count > majorityCount) {
+                return nums[i];
+            }
+        }
+        return -1;
+    }
+
+    // Approach 2 - Divide & Conquer 
+    // Idea : If we know the majority element in the left and right halves of an array, we can determine which is the global majority element in linear time.
+    private static int countInRange(int[] nums, int num, int lo, int hi) {
+        int count = 0;
+        for (int i = lo; i <= hi; i++) {
+            if (nums[i] == num) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static int majorityElementRec(int[] nums, int lo, int hi) {
+        // base case; the only element in an array of size 1 is the majority
+        // element.
+        if (lo == hi) {
+            return nums[lo];
+        }
+        // recurse on left and right halves of this slice.
+        int mid = (hi - lo) / 2 + lo;
+        int left = majorityElementRec(nums, lo, mid);
+        int right = majorityElementRec(nums, mid + 1, hi);
+        // if the two halves agree on the majority element, return it.
+        if (left == right) {
+            return left;
+        }
+        // otherwise, count each element and return the "winner".
+        int leftCount = countInRange(nums, left, lo, hi);
+        int rightCount = countInRange(nums, right, lo, hi);
+        return leftCount > rightCount ? left : right;
+    }
+
+    public static int majorityElement2(int[] nums) {
+        return majorityElementRec(nums, 0, nums.length - 1);
+    }
 
     public static void main(String[] args) {
         // Question 1 : Apply Merge sort to sort an array of Strings. (Assume that all the characters in all the Strings are in lowercase). (EASY)
@@ -53,8 +106,11 @@ public class Assignment_Divide_Conquer {
         // Question 2 : Given an array nums of size n, return the majority element. (MEDIUM)
         // The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
         int nums[] = { 3, 2, 3 }; // Output -> 3
-
         int nums2[] = { 2, 2, 1, 1, 1, 2, 2 }; // Output -> 2
+        System.out.println("majorityElement : " + majorityElement(nums));
+        System.out.println("majorityElement : " + majorityElement(nums2));
+        System.out.println("majorityElement2 : " + majorityElement2(nums));
+        System.out.println("majorityElement2 : " + majorityElement2(nums2));
 
         // Question 3 : Given an array of integers. Find the Inversion Count in the array. (HARD)
         // Inversion Count: For an array, inversion count indicates how far (or close) the array is from being sorted. If the array is already sorted then the inversion count is 0. If an array is 
