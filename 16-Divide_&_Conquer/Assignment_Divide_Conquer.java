@@ -93,8 +93,72 @@ public class Assignment_Divide_Conquer {
         return leftCount > rightCount ? left : right;
     }
 
-    public static int majorityElement2(int[] nums) {
+    public static int majorityElement2(int[] nums) { // TC -> O(n*logn)
         return majorityElementRec(nums, 0, nums.length - 1);
+    }
+
+    // Solution 3. -----------------------------------
+    // Approach 1 - Brute Force Approach
+    public static int getInvCount(int arr[]) {
+        int n = arr.length;
+        int invCount = 0;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (arr[i] > arr[j]) {
+                    invCount++;
+                }
+            }
+        }
+        return invCount;
+    }
+
+    // Approach 2 - Divide & Conquer
+    public static int merge(int arr[], int left, int mid, int right) {
+        int i = left, j = mid, k = 0;
+        int invCount = 0;
+        int temp[] = new int[(right - left + 1)];
+        while ((i < mid) && (j <= right)) {
+            if (arr[i] <= arr[j]) {
+                temp[k] = arr[i];
+                k++;
+                i++;
+            } else {
+                temp[k] = arr[j];
+                invCount += (mid - i);
+                k++;
+                j++;
+            }
+        }
+        while (i < mid) {
+            temp[k] = arr[i];
+            k++;
+            i++;
+        }
+        while (j <= right) {
+            temp[k] = arr[j];
+            k++;
+            j++;
+        }
+        for (i = left, k = 0; i <= right; i++, k++) {
+            arr[i] = temp[k];
+        }
+        return invCount;
+    }
+
+    private static int mergeSort(int arr[], int left, int right) {
+        int invCount = 0;
+        if (right > left) {
+            int mid = (right + left) / 2;
+            invCount = mergeSort(arr, left, mid);
+            invCount += mergeSort(arr, mid + 1, right);
+            invCount += merge(arr, left, mid + 1, right);
+        }
+        return invCount;
+    }
+
+    public static int getInversions(int arr[]) {
+        int n = arr.length;
+        return mergeSort(arr, 0, n - 1);
     }
 
     public static void main(String[] args) {
@@ -116,14 +180,18 @@ public class Assignment_Divide_Conquer {
         // Inversion Count: For an array, inversion count indicates how far (or close) the array is from being sorted. If the array is already sorted then the inversion count is 0. If an array is 
         // sorted in the reverse order then the inversion count is the maximum. Formally, two elements a[i] and a[j] form an inversion if a[i] > a[j] and i < j.
         // (Hint : A sorting algorithm will be used to solve this question.)
-        int N = 5;
+
         int arr[] = { 2, 4, 1, 3, 5 }; // Output -> 3, because it has 3 inversions - (2, 1), (4, 1), (4, 3).
-
-        int N2 = 5;
         int arr2[] = { 2, 3, 4, 5, 6 }; // Output -> 0, because the array is already sorted
-
-        int N3 = 3;
         int arr3[] = { 5, 5, 5 }; // Output -> 0, because all the elements of the array are the same & already in a sorted manner.
+
+        System.out.println("Inversion Count : " + getInvCount(arr));
+        System.out.println("Inversion Count : " + getInvCount(arr2));
+        System.out.println("Inversion Count : " + getInvCount(arr3));
+
+        System.out.println("Inversion Count2 : " + getInversions(arr));
+        System.out.println("Inversion Count2 : " + getInversions(arr2));
+        System.out.println("Inversion Count2 : " + getInversions(arr3));
 
     }
 }
