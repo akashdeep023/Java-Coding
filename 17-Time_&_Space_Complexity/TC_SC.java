@@ -96,10 +96,42 @@ public class TC_SC {
         // SC = O(n)
 
         // Power function 1 Analysis --------------------------------
-        // 
+        // powerFunction(int a, int n){
+        //     if(n==0){
+        //         return 1;
+        //     }
+        //     return a * powerFunction(a,n-1);
+        // }
+        // TC = O(n) -> Work done = number of calls * time in each call => n * k => n
+        // SC = O(n) -> Max depth(stack calls) * memory in each call => n * 1 => n
+
         // Power function 2 Analysis --------------------------------
-        // 
+        // powerFunction2(int a, int n){
+        //     if(n==0){
+        //         return 1;
+        //     }
+        //     int halfPowerSq =  powerFunction2(a,n/2) * powerFunction2(a,n/2);
+        //     if(n%2!= 0){
+        //         return a * halfPowerSq;
+        //     }
+        //     return halfPowerSq;
+        // }
+        // TC = O(n) -> two times recursion call inside a function
+        // SC = O(n)
+
         // Power function 3 Analysis --------------------------------
-        // 
+        // powerFunction3(int a, int n){
+        //     if(n==0){
+        //         return 1;
+        //     }
+        //     int halfPower =  powerFunction3(a,n/2);
+        //     int halfPowerSq = halfPower * halfPower;        
+        //     if(n%2!= 0){
+        //         return a * halfPowerSq;
+        //     }
+        //     return halfPowerSq;
+        // }
+        // TC = O(logn) -> only one time recursion call inside a function  
+        // SC = O(logn) -> total stack calls * memory in each call  => logn * k => logn
     }
 }
