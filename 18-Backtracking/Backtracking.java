@@ -65,6 +65,75 @@ public class Backtracking {
         }
     }
 
+    public static void nQueens(char board[][], int row) {
+        if (row == board.length) { // Base case  
+            System.out.println("-------Chess Board-------");
+            printBoard(board);
+            countWays++;
+            return;
+        }
+        //column loop
+        for (int j = 0; j < board.length; j++) {
+            if (isSafeQueen(board, row, j)) { // safe hai ya nhi call isSafe
+                board[row][j] = 'Q';
+                nQueens(board, row + 1); // function call
+                board[row][j] = 'X'; // backtracking
+            }
+        }
+    }
+
+    public static boolean isSafeQueen(char board[][], int row, int col) {
+        // vertical up
+        for (int i = row - 1; i >= 0; i--) {
+            if (board[i][col] == 'Q') {
+                return false;
+            }
+        }
+        // diag left up
+        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 'Q') {
+                return false;
+            }
+        }
+        // diag right up
+        for (int i = row - 1, j = col + 1; i >= 0 && j < board.length; i--, j++) {
+            if (board[i][j] == 'Q') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void printBoard(char board[][]) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    static int countWays = 0;
+
+    public static boolean nQueensSol1(char board[][], int row) {
+        if (row == board.length) { // Base case            
+            // printBoard(board);
+            // countWays++;
+            return true;
+        }
+        //column loop
+        for (int j = 0; j < board.length; j++) {
+            if (isSafeQueen(board, row, j)) { // safe hai ya nhi call isSafe
+                board[row][j] = 'Q';
+                if (nQueensSol1(board, row + 1)) {
+                    return true;
+                }
+                board[row][j] = 'X'; // backtracking
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         // Type of Backtracking --------------------------------
         // 1. Decision
@@ -89,6 +158,31 @@ public class Backtracking {
         String str2 = "abc";
         findPermutation(str2, "");
         System.out.println();
+
+        // N Queens --------------------------------
+        // Place N Queens on an N x N chess board such that no 2 queens can attack each other. ---
+        int n = 4;
+        char board[][] = new char[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = 'X';
+            }
+        }
+        nQueens(board, 0);
+        System.out.println();
+
+        // N Queens count ways --------------------------------
+        // Count total number of ways in which we can solve N Queens problems. ---
+        System.out.println("Total ways to solve n queens = " + countWays);
+
+        // N Queens print one solution --------------------------------
+        // Check if problem can be solved & print only 1 solution to N Queens. ---
+        if (nQueensSol1(board, 0)) {
+            System.out.println("Solution is possible");
+            printBoard(board);
+        } else {
+            System.out.println("Solution is not possible");
+        }
 
     }
 }
