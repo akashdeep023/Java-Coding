@@ -2,6 +2,7 @@
 // import java.util.*; // import all package
 import java.util.Arrays; // import Array package
 import java.util.Collections; // import Collection package
+import java.lang.Math; // import Math
 
 public class Sorting {
     // Bubble Sort -> Large element come to the end of array by swapping with adjacent elements.
