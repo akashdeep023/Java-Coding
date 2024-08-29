@@ -11,6 +11,38 @@ public class Array_List {
         list.set(idx2, temp);
     }
 
+    public static int storeWater(ArrayList<Integer> height) { // Brute forse TC -> O(n^2)
+        int max = 0;
+        for (int i = 0; i < height.size(); i++) {
+            for (int j = i + 1; j < height.size(); j++) {
+                int lHeight = Math.min(height.get(i), height.get(j));
+                int width = j - i;
+                max = Math.max(max, lHeight * width);
+            }
+        }
+        return max;
+    }
+
+    public static int storeWaterOpt(ArrayList<Integer> height) { // Two pointer approach TC -> O(n)
+        int maxWater = 0;
+        int lp = 0; // left pointer
+        int rp = height.size() - 1; // right pointer
+        while (lp < rp) {
+            // Calculate water area
+            int minheight = Math.min(height.get(lp), height.get(rp));
+            int width = rp - lp;
+            int water = minheight * width;
+            maxWater = Math.max(maxWater, water);
+            // Update pointer
+            if (height.get(lp) < height.get(rp)) {
+                lp++;
+            } else {
+                rp--;
+            }
+        }
+        return maxWater;
+    }
+
     public static void main(String[] args) {
         // Introduction to ArrayList --------------------------------
         // Array -> Fixed size & primitive data types can be stored
@@ -117,6 +149,23 @@ public class Array_List {
             }
             System.out.println();
         }
+
+        // Container with most water --------------------------------
+        // For given n lines on x-axix, use 2 lines to form a container such that it holds maximum water. ---
+        ArrayList<Integer> height = new ArrayList<>();
+        height.add(1);
+        height.add(8);
+        height.add(6);
+        height.add(2);
+        height.add(5);
+        height.add(4);
+        height.add(8);
+        height.add(3);
+        height.add(7);
+        System.out.println(height);
+        System.out.println("Container with most Water : " + storeWater(height));
+
+        System.out.println("Container with most Water Opt : " + storeWaterOpt(height));
 
     }
 }
