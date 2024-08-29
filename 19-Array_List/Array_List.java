@@ -43,6 +43,60 @@ public class Array_List {
         return maxWater;
     }
 
+    public static boolean pairSum1Brute(ArrayList<Integer> list, int target) { // Brute forse  TC -> O(n^2)
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i + 1; j < list.size(); j++) {
+                int currSum = list.get(i) + list.get(j);
+                if (target == currSum) {
+                    return true;
+                    // System.out.print("("+list.get(i)+","+list.get(j)+") ");
+                }
+            }
+        }
+        return false;
+        // System.out.println();
+    }
+
+    public static boolean pairSum1TwoPointer(ArrayList<Integer> list, int target) { // Two pointer approach  TC -> O(n)
+        int lp = 0;
+        int rp = list.size() - 1;
+        while (lp < rp) {
+            if (target == list.get(lp) + list.get(rp)) {
+                return true;
+            } else if (target > list.get(lp) + list.get(rp)) {
+                lp++;
+            } else {
+                rp--;
+            }
+        }
+        return false;
+    }
+
+    public static boolean pairSum2(ArrayList<Integer> list, int target) {
+        // Fint pivot 
+        int bp = -1;
+        int n = list.size();
+        for (int i = 0; i < list.size() - 1; i++) {
+            if (list.get(i) > list.get(i + 1)) {
+                bp = i;
+                break;
+            }
+        }
+        int rp = bp;
+        int lp = bp + 1;
+        while (lp != rp) {
+            if (target == list.get(lp) + list.get(rp)) {
+                return true;
+            }
+            if (target > list.get(lp) + list.get(rp)) { // target big then incressing index
+                lp = (lp + 1) % n; // range (0 to n-1)
+            } else {
+                rp = (n + rp - 1) % n; // range (0 to n-1)
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         // Introduction to ArrayList --------------------------------
         // Array -> Fixed size & primitive data types can be stored
@@ -163,9 +217,38 @@ public class Array_List {
         height.add(3);
         height.add(7);
         System.out.println(height);
+
+        // Brute force --- O(n^2)
         System.out.println("Container with most Water : " + storeWater(height));
 
+        // Two pointer approach --- O(n)
         System.out.println("Container with most Water Opt : " + storeWaterOpt(height));
 
+        // Pair Sum 1 --------------------------------
+        // Find if any pair in a Sorted ArrayList has a target sum.
+        ArrayList<Integer> numList = new ArrayList<>();
+        // 1,2,3,4,5,6
+        numList.add(1);
+        numList.add(2);
+        numList.add(3);
+        numList.add(4);
+        numList.add(5);
+        numList.add(6);
+        int target = 5;
+        System.out.println(pairSum1Brute(numList, target));
+        System.out.println(pairSum1TwoPointer(numList, target)); // numList sorted
+
+        // Pair Sum 2 --------------------------------
+        // Find if any pair in a Sorted & Rotated ArrayList has a target sum.
+        ArrayList<Integer> numList2 = new ArrayList<>();
+        // 11,15,6,8,9,10
+        numList2.add(11);
+        numList2.add(15);
+        numList2.add(6);
+        numList2.add(8);
+        numList2.add(9);
+        numList2.add(10);
+        int target2 = 16;
+        System.out.println(pairSum2(numList2, target2));
     }
 }
