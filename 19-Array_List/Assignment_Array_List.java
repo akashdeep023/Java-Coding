@@ -41,6 +41,25 @@ public class Assignment_Array_List {
         return list;
     }
 
+    // Solution 3. --------------------------------
+    public static int mostFrequent(ArrayList<Integer> nums, int key) {
+        int[] result = new int[1000];
+        for (int i = 0; i < nums.size() - 1; i++) {
+            if (nums.get(i) == key) {
+                result[nums.get(i + 1) - 1]++;
+            }
+        }
+        int max = Integer.MIN_VALUE;
+        int ans = 0;
+        for (int i = 0; i < 1000; i++) {
+            if (result[i] > max) {
+                max = result[i];
+                ans = i + 1;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         // Question 1 : Monotonic ArrayList (EASY) --------------------------------
         // An Arraylist is monotonic if it is either monotone increasing or monotone decreasing.
@@ -106,7 +125,7 @@ public class Assignment_Array_List {
         no1.add(1);
         no1.add(100);
         int key1 = 1;
-
+        System.out.println(mostFrequent(no1, key1));
         // Input 2 : nums = [2,2,2,2,3], key = 2; Output 2 : 2
         ArrayList<Integer> no2 = new ArrayList<>();
         no2.add(2);
@@ -115,6 +134,7 @@ public class Assignment_Array_List {
         no2.add(2);
         no2.add(3);
         int key2 = 2;
+        System.out.println(mostFrequent(no2, key2));
 
         // Question 4 : Beautiful ArrayList (MEDIUM) --------------------------------
         // An Arraylist nums of size n is beautiful if:
