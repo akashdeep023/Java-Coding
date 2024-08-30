@@ -60,6 +60,41 @@ public class Assignment_Array_List {
         return ans;
     }
 
+    // Solution 4. (Approach 1 - (Iterative)) --------------------------------
+    public static ArrayList<Integer> beautifulArray(int n) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(1);
+        for (int i = 2; i <= n; i++) {
+            ArrayList<Integer> temp = new ArrayList<>();
+            for (Integer e : ans) {
+                if (2 * e <= n)
+                    temp.add(e * 2);
+            }
+            for (Integer e : ans) {
+                if (2 * e - 1 <= n)
+                    temp.add(e * 2 - 1);
+            }
+            ans = temp;
+        }
+        return ans;
+    }
+
+    // Solution 4. (Approach 2 - (Divide & Conquer)) --------------------------------
+    public static ArrayList<Integer> beautifulArray2(int n) {
+        ArrayList<Integer> res = new ArrayList<>();
+        divideConque(1, 1, res, n);
+        return res;
+    }
+
+    private static void divideConque(int start, int increment, ArrayList<Integer> res, int n) {
+        if (start + increment > n) {
+            res.add(start);
+            return;
+        }
+        divideConque(start, 2 * increment, res, n);
+        divideConque(start + increment, 2 * increment, res, n);
+    }
+
     public static void main(String[] args) {
         // Question 1 : Monotonic ArrayList (EASY) --------------------------------
         // An Arraylist is monotonic if it is either monotone increasing or monotone decreasing.
@@ -143,19 +178,14 @@ public class Assignment_Array_List {
         // Given the integer n, return any beautiful arraylist nums of size n. There will be at least one valid
         // answer for the given n.
         // Input 1 : n = 4; Output 1 : [2,1,4,3]
-        ArrayList<Integer> nb1 = new ArrayList<>();
-        nb1.add(2);
-        nb1.add(1);
-        nb1.add(4);
-        nb1.add(3);
+        int n1 = 4;
+        System.out.println(beautifulArray(n1));
+        System.out.println(beautifulArray2(n1));
 
         // Input 2 : n = 5; Output 2 : [3,1,2,5,4]
-        ArrayList<Integer> nb2 = new ArrayList<>();
-        nb2.add(3);
-        nb2.add(1);
-        nb2.add(2);
-        nb2.add(5);
-        nb2.add(4);
+        int n2 = 5;
+        System.out.println(beautifulArray(n2));
+        System.out.println(beautifulArray2(n2));
 
     }
 }
