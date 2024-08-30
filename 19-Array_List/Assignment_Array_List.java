@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Assignment_Array_List {
 
@@ -15,6 +16,29 @@ public class Assignment_Array_List {
             }
         }
         return inc || dec;
+    }
+
+    // Solution 2. --------------------------------
+    public static ArrayList<Integer> findLonely(ArrayList<Integer> nums) {
+        Collections.sort(nums);
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 1; i < nums.size() - 1; i++) {
+            if (nums.get(i - 1) + 1 < nums.get(i) && nums.get(i) + 1 < nums.get(i + 1)) {
+                list.add(nums.get(i));
+            }
+        }
+        if (nums.size() == 1) {
+            list.add(nums.get(0));
+        }
+        if (nums.size() > 1) {
+            if (nums.get(0) + 1 < nums.get(1)) {
+                list.add(nums.get(0));
+            }
+            if (nums.get(nums.size() - 2) + 1 < nums.get(nums.size() - 1)) {
+                list.add(nums.get(nums.size() - 1));
+            }
+        }
+        return list;
     }
 
     public static void main(String[] args) {
@@ -54,13 +78,14 @@ public class Assignment_Array_List {
         num1.add(6);
         num1.add(5);
         num1.add(8);
-
+        System.out.println(findLonely(num1));
         // Input 2 : nums = [1,3,5,3] Output 2 : [1,5]
         ArrayList<Integer> num2 = new ArrayList<>();
         num2.add(1);
         num2.add(3);
         num2.add(5);
         num2.add(3);
+        System.out.println(findLonely(num2));
 
         // Question 3 : Most Frequent Number following Key (EASY) --------------------------------
         // You are given an integer Arraylist nums. You are also given an integer key, which is present in nums.
