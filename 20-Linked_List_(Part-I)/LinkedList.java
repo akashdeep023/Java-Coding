@@ -169,6 +169,70 @@ public class LinkedList { // Create LinkedList Class
         head = prev; // prev == last node (update head node)
     }
 
+    // Find and remove Nth node from end ---
+    public void deleteNthFromEnd(int n) {
+        // calculate size
+        int sz = 0; // already sn = size (static variable)
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+        if (n == sz) { // head node remove
+            head = head.next; // removeFirst
+            return;
+        }
+        int i = 1; // i = node number
+        int iToFind = sz - n;
+        Node prev = head;
+        while (i < iToFind) {
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next; // remove nth node
+        return;
+    }
+
+    // Check if LinkedList is Palindrome ---
+    public Node findMidNode(Node head) { // Slow-Fast concept
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) { // even case && odd case
+            slow = slow.next; // +1
+            fast = fast.next.next; // +2
+        }
+        return slow; // mid Node
+    }
+
+    public boolean isPalindrome() {
+        if (head == null && head.next == null) {
+            return true; // isPalindrome            
+        }
+        // step-1 find mid
+        Node midNode = findMidNode(head);
+        // step-2 reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev; // right half head
+        Node left = head; // left half head
+        // step-3 check left half & right half
+        while (right != null) {
+            if (left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         // Introduction to LinkedList --------------------------------
         // Node -> like a cell to store 2 things, 1st data and 2nd next node reference ya null value
@@ -219,5 +283,22 @@ public class LinkedList { // Create LinkedList Class
         ll.reverse();
         ll.print();
 
+        // Find and remove Nth node from end --------------------------------
+        ll.deleteNthFromEnd(3);
+        ll.deleteNthFromEnd(2);
+        ll.deleteNthFromEnd(1);
+        ll.print(); // Empty LinkedList
+
+        // Check if LinkedList is Palindrome --------------------------------
+        // 1st Method --- (LL to (Array ya ArrayList ya String)) TC == SC => O(n)
+        // 2nd Method --- (Find mid node -> 2nd half reverse -> check if 1st half == 2nd half) TC => O(n) SC => O(1)
+        // Check Palindrome --------------------------------
+        // LinkedList llp = new LinkedList(); // Node Class is a static thats why create a single linked list Node
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(2);
+        ll.addLast(1);
+        ll.print();
+        System.out.println(ll.isPalindrome());
     }
 }
