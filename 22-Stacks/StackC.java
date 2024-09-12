@@ -80,6 +80,7 @@ public class StackC {
         while (!s.isEmpty()) {
             System.out.println(s.pop());
         }
+        System.out.println();
     }
 
     // Q-1 Push at the bottom of the Stack -------------------------------- 
@@ -108,6 +109,17 @@ public class StackC {
         return sb.toString();
     }
 
+    // Q-3 Reverse a Stack --------------------------------
+    public static void reverseStack(Stack<Integer> s) {
+        if (s.isEmpty()) { // base case
+            return; // stack is empty then return
+        }
+        int top = s.pop(); // top element pop
+        reverseStack(s); // recursion call
+        pushBottom(s, top); // backtracking for top element to push bottom
+
+    }
+
     public static void main(String[] args) {
         // Stack using ArrayList & LinkedList --------------------------------
         // Stack s = new Stack();
@@ -128,13 +140,27 @@ public class StackC {
             System.out.println(st.peek());
             st.pop();
         }
+        System.out.println();
 
         // Q-1 Push at the bottom of the Stack -------------------------------- 
-        pushBottom(st, 4);
-        printStack(st);
+        Stack<Integer> st2 = new Stack<>();
+        st2.push(1);
+        st2.push(2);
+        st2.push(3);
+        pushBottom(st2, 4);
+        printStack(st2);
 
         // Q-2 Reverse a String using a Stack --------------------------------
         System.out.println(reverseString("jack"));
+        System.out.println();
+
+        // Q-3 Reverse a Stack --------------------------------
+        Stack<Integer> st3 = new Stack<>();
+        st3.push(1);
+        st3.push(2);
+        st3.push(3);
+        reverseStack(st3);
+        printStack(st3);
 
     }
 }
