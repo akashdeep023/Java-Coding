@@ -93,6 +93,21 @@ public class StackC {
         s.push(top); // backtracking
     }
 
+    // Q-2 Reverse a String using a Stack --------------------------------
+    public static String reverseString(String str) {
+        Stack<Character> s = new Stack<>(); // Create character type stack
+        int idx = 0;
+        while (idx < str.length()) {
+            s.push(str.charAt(idx));
+            idx++;
+        }
+        StringBuilder sb = new StringBuilder("");
+        while (!s.isEmpty()) {
+            sb.append(s.pop());
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         // Stack using ArrayList & LinkedList --------------------------------
         // Stack s = new Stack();
@@ -117,6 +132,9 @@ public class StackC {
         // Q-1 Push at the bottom of the Stack -------------------------------- 
         pushBottom(st, 4);
         printStack(st);
+
+        // Q-2 Reverse a String using a Stack --------------------------------
+        System.out.println(reverseString("jack"));
 
     }
 }
