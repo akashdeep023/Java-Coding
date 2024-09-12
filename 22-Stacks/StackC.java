@@ -75,6 +75,24 @@ public class StackC {
     //     }
     // }
 
+    // Print Stack --- helper function to print stack
+    public static void printStack(Stack<Integer> s) {
+        while (!s.isEmpty()) {
+            System.out.println(s.pop());
+        }
+    }
+
+    // Q-1 Push at the bottom of the Stack -------------------------------- 
+    public static void pushBottom(Stack<Integer> s, int data) {
+        if (s.isEmpty()) { // base case
+            s.push(data);
+            return;
+        }
+        int top = s.pop();
+        pushBottom(s, data); // recursion
+        s.push(top); // backtracking
+    }
+
     public static void main(String[] args) {
         // Stack using ArrayList & LinkedList --------------------------------
         // Stack s = new Stack();
@@ -96,7 +114,9 @@ public class StackC {
             st.pop();
         }
 
-        // Push at bottom -------------------------------- 
+        // Q-1 Push at the bottom of the Stack -------------------------------- 
+        pushBottom(st, 4);
+        printStack(st);
 
     }
 }
