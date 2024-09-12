@@ -31,60 +31,72 @@ public class StackC {
     // }
 
     // LinkedList -------------------------------- 
-    static class Node { // LinkedList Node class
-        int data;
-        Node next;
+    // static class Node { // LinkedList Node class
+    //     int data;
+    //     Node next;
 
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
+    //     Node(int data) {
+    //         this.data = data;
+    //         this.next = null;
+    //     }
+    // }
 
-    static class Stack {
-        static Node head = null;
+    // static class Stack {
+    //     static Node head = null;
 
-        public boolean isEmpty() {
-            return head == null;
-        }
+    //     public boolean isEmpty() {
+    //         return head == null;
+    //     }
 
-        public void push(int data) {
-            Node newNode = new Node(data);
-            if (isEmpty()) {
-                head = newNode;
-                return;
-            }
-            newNode.next = head;
-            head = newNode;
-        }
+    //     public void push(int data) {
+    //         Node newNode = new Node(data);
+    //         if (isEmpty()) {
+    //             head = newNode;
+    //             return;
+    //         }
+    //         newNode.next = head;
+    //         head = newNode;
+    //     }
 
-        public int pop() {
-            if (isEmpty()) {
-                return -1;
-            }
-            int top = head.data;
-            head = head.next;
-            return top;
-        }
+    //     public int pop() {
+    //         if (isEmpty()) {
+    //             return -1;
+    //         }
+    //         int top = head.data;
+    //         head = head.next;
+    //         return top;
+    //     }
 
-        public int peek() {
-            if (isEmpty()) {
-                return -1;
-            }
-            return head.data;
-        }
-    }
+    //     public int peek() {
+    //         if (isEmpty()) {
+    //             return -1;
+    //         }
+    //         return head.data;
+    //     }
+    // }
 
     public static void main(String[] args) {
-        // ArrayList & LinkedList --------------------------------
-        Stack s = new Stack();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        while (!s.isEmpty()) {
-            System.out.println(s.peek());
-            s.pop();
+        // Stack using ArrayList & LinkedList --------------------------------
+        // Stack s = new Stack();
+        // s.push(1);
+        // s.push(2);
+        // s.push(3);
+        // while (!s.isEmpty()) {
+        //     System.out.println(s.peek());
+        //     s.pop();
+        // }
+
+        // Stack using Collections framework --------------------------------
+        Stack<Integer> st = new Stack<>();
+        st.push(1);
+        st.push(2);
+        st.push(3);
+        while (!st.isEmpty()) {
+            System.out.println(st.peek());
+            st.pop();
         }
+
+        // Push at bottom -------------------------------- 
 
     }
 }
