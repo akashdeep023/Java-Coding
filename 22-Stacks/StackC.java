@@ -186,6 +186,35 @@ public class StackC {
         return s.isEmpty();
     }
 
+    // Q-7 Duplicates Parentheses --------------------------------
+    public static boolean isDuplParenthese(String str) { // TC -> O(n)
+        Stack<Character> s = new Stack<>();
+        for (int i = 0; i < str.length(); i++) { // loop to traverse every character
+            char ch = str.charAt(i);
+            if (ch == ')') { // closing
+                int count = 0;
+                // while (s.peek() != '(') {
+                //     s.pop();
+                //     count++;
+                // }
+                // if (count < 1) {
+                //     return true; // duplicate
+                // } else {
+                //     s.pop(); // opening pair
+                // }
+                while (s.pop() != '(') { // pop every character or top character not equal to '(' then increment count
+                    count++;
+                }
+                if (count < 1) { // count = 0 (duplicate) or count >= 1 (no duplicate)
+                    return true; // duplicate
+                }
+            } else { // opening ya oprand ya oprator
+                s.push(ch);
+            }
+        }
+        return false; // duplicate not exist
+    }
+
     public static void main(String[] args) {
         // Stack using ArrayList & LinkedList --------------------------------
         // Stack s = new Stack();
@@ -260,6 +289,15 @@ public class StackC {
         // 3. Every close bracket has a corresponding open bracket of the same type.
         String brackets = "({[]}())[]"; // true
         System.out.println(validParentheses(brackets));
+        System.out.println();
 
+        // Q-7 Duplicates Parentheses --------------------------------
+        // Given a balanced expression, find if it contains duplicate parentheses or not. A set of
+        // parentheses are duplicate if the same subexpression is surrounded by multiple parentheses.
+        // Returns true if it contains duplicate parentheses else returns false.
+        String str = "(((a+(b)))+(c+d))"; // true (duplicate parentheses exist)
+        String str2 = "((a+b)+(c+d))"; // false (duplicate parentheses not exist)
+        System.out.println(isDuplParenthese(str));
+        System.out.println(isDuplParenthese(str2));
     }
 }
