@@ -208,7 +208,7 @@ public class StackC {
                 if (count < 1) { // count = 0 (duplicate) or count >= 1 (no duplicate)
                     return true; // duplicate
                 }
-            } else { // opening ya oprand ya oprator
+            } else { // opening ya operands ya operator
                 s.push(ch);
             }
         }
