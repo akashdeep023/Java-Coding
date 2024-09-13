@@ -139,7 +139,7 @@ public class StackC {
         }
     }
 
-    // Next greater element --------------------------------
+    // Q-5 Next greater element --------------------------------
     public static void nextGreaterEle(int arr[], int nextGreater[]) { // TC -> O(2n + n) => O(n)
         Stack<Integer> s = new Stack<>();
         for (int i = arr.length - 1; i >= 0; i--) { // backwards travers
@@ -156,6 +156,34 @@ public class StackC {
             // push current idx in stack
             s.push(i);
         }
+    }
+
+    // Q-6 Valid Parentheses --------------------------------
+    public static boolean validParentheses(String str) {
+        Stack<Character> s = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == '(' || ch == '{' || ch == '[') { // Opening bracket (push character in Stack)
+                s.push(ch);
+            } else { // Closing bracket (pop character from Stack)
+                if (s.isEmpty()) { // Start with closing bracket
+                    return false;
+                }
+                if ((s.peek() == '(' && ch == ')') //()
+                        || (s.peek() == '{' && ch == '}') // {}
+                        || (s.peek() == '[' && ch == ']') // []
+                ) { // Opening & closing bracket is matched then pop top character
+                    s.pop();
+                } else {
+                    return false; // not valid (character not matching) 
+                }
+            }
+        }
+        // if (!s.isEmpty()) { // Stack is not empty then return false
+        //     return false;
+        // }
+        // return true;
+        return s.isEmpty();
     }
 
     public static void main(String[] args) {
@@ -210,7 +238,7 @@ public class StackC {
         }
         System.out.println("\n");
 
-        // Next greater element --------------------------------
+        // Q-5 Next greater element --------------------------------
         // Next greater element of some element x in an array in the first greater 
         // element that is to the right of x in the same array.
         // 1st Approach -> Nested Loop (TC - O(n^2))
@@ -222,6 +250,16 @@ public class StackC {
             System.out.print(nextGreater[i] + " ");
         }
         System.out.println("\n");
+
+        // Q-6 Valid Parentheses --------------------------------
+        // Given a string s containing just the charaters '()', '(', '{', '}', '[' and ']' determine 
+        // if the input string is valid.
+        // An input string is valid if:
+        // 1. Open brackets must be closed by the same type of brackets.
+        // 2. Open brackets must be closed in the correct order.
+        // 3. Every close bracket has a corresponding open bracket of the same type.
+        String brackets = "({[]}())[]"; // true
+        System.out.println(validParentheses(brackets));
 
     }
 }
