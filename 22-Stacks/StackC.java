@@ -117,7 +117,26 @@ public class StackC {
         int top = s.pop(); // top element pop
         reverseStack(s); // recursion call
         pushBottom(s, top); // backtracking for top element to push bottom
+    }
 
+    // Q-4 Stock span Problem --------------------------------
+    public static void stockSpan(int stocks[], int span[]) {
+        Stack<Integer> s = new Stack<>();
+        s.push(0);
+        span[0] = 1;
+        for (int i = 1; i < span.length; i++) {
+            int currStock = stocks[i];
+            while (!s.isEmpty() && currStock >= stocks[s.peek()]) {
+                s.pop();
+            }
+            if (s.isEmpty()) {
+                span[i] = i + 1;
+            } else {
+                int prevHigh = s.peek();
+                span[i] = i - prevHigh;
+            }
+            s.push(i);
+        }
     }
 
     public static void main(String[] args) {
@@ -161,6 +180,16 @@ public class StackC {
         st3.push(3);
         reverseStack(st3);
         printStack(st3);
+
+        // Q-4 Stock span Problem --------------------------------
+        int stocks[] = { 100, 80, 60, 70, 60, 85, 100 };
+        int span[] = new int[stocks.length];
+        stockSpan(stocks, span);
+
+        for (int i = 0; i < span.length; i++) {
+            System.out.print(span[i] + " ");
+        }
+        System.out.println();
 
     }
 }
