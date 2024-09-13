@@ -139,6 +139,25 @@ public class StackC {
         }
     }
 
+    // Next greater element --------------------------------
+    public static void nextGreaterEle(int arr[], int nextGreater[]) { // TC -> O(2n + n) => O(n)
+        Stack<Integer> s = new Stack<>();
+        for (int i = arr.length - 1; i >= 0; i--) { // backwards travers
+            // while loop to pop lessthan element idx
+            while (!s.isEmpty() && arr[s.peek()] <= arr[i]) { // stack not empty && lessthan
+                s.pop();
+            }
+            // step-1 if-else or add greater element in nextGreater
+            if (s.isEmpty()) {
+                nextGreater[i] = -1;
+            } else {
+                nextGreater[i] = arr[s.peek()];
+            }
+            // push current idx in stack
+            s.push(i);
+        }
+    }
+
     public static void main(String[] args) {
         // Stack using ArrayList & LinkedList --------------------------------
         // Stack s = new Stack();
@@ -189,7 +208,20 @@ public class StackC {
         for (int i = 0; i < span.length; i++) {
             System.out.print(span[i] + " ");
         }
-        System.out.println();
+        System.out.println("\n");
+
+        // Next greater element --------------------------------
+        // Next greater element of some element x in an array in the first greater 
+        // element that is to the right of x in the same array.
+        // 1st Approach -> Nested Loop (TC - O(n^2))
+        // 2nd Using Stack Approach ->  (TC - O(n))
+        int arr[] = { 6, 8, 0, 1, 3 };
+        int nextGreater[] = new int[arr.length];
+        nextGreaterEle(arr, nextGreater);
+        for (int i = 0; i < nextGreater.length; i++) {
+            System.out.print(nextGreater[i] + " ");
+        }
+        System.out.println("\n");
 
     }
 }
