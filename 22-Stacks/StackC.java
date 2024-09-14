@@ -1,4 +1,5 @@
 import java.util.*; // Import all package
+import java.lang.Math;
 
 public class StackC {
     // ArrayList --------------------------------
@@ -215,6 +216,46 @@ public class StackC {
         return false; // duplicate not exist
     }
 
+    // Q-8 Max Ractangular area in Histogram --------------------------------
+    public static void maxArea(int height[]) { // TC -> O(n)
+        int maxArea = 0;
+        int nsr[] = new int[height.length];
+        int nsl[] = new int[height.length];
+        // Next smaller right TC -> O(n)
+        Stack<Integer> s = new Stack<>();
+        for (int i = height.length - 1; i >= 0; i--) { // right side
+            while (!s.isEmpty() && height[s.peek()] >= height[i]) { // smaller
+                s.pop();
+            }
+            if (s.isEmpty()) {
+                nsr[i] = height.length;
+            } else {
+                nsr[i] = s.peek();
+            }
+            s.push(i);
+        }
+        // Next smaller left TC -> O(n)
+        s = new Stack<>(); // Empty stack
+        for (int i = 0; i < height.length; i++) { // left side
+            while (!s.isEmpty() && height[s.peek()] >= height[i]) { // smaller
+                s.pop();
+            }
+            if (s.isEmpty()) {
+                nsl[i] = -1;
+            } else {
+                nsl[i] = s.peek();
+            }
+            s.push(i);
+        }
+        // Current area TC -> O(n)
+        for (int i = 0; i < nsl.length; i++) {
+            int width = nsr[i] - nsl[i] - 1; // j - i - 1
+            int currArea = height[i] * width;
+            maxArea = Math.max(maxArea, currArea);
+        }
+        System.out.println("Max rectangle area : " + maxArea);
+    }
+
     public static void main(String[] args) {
         // Stack using ArrayList & LinkedList --------------------------------
         // Stack s = new Stack();
@@ -299,5 +340,12 @@ public class StackC {
         String str2 = "((a+b)+(c+d))"; // false (duplicate parentheses not exist)
         System.out.println(isDuplParenthese(str));
         System.out.println(isDuplParenthese(str2));
+        System.out.println();
+
+        // Q-8 Max Ractangular area in Histogram --------------------------------
+        // Given a array of integers height representing the histogram's bar height where the
+        // width of each bar is 1, return the area of the largest rectangle in the histogram.
+        int height[] = { 2, 1, 5, 6, 2, 3 }; // height in histogram
+        maxArea(height); // Output -> 10
     }
 }
