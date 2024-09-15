@@ -80,6 +80,19 @@
 ✨ 2. Binary search algorithm -> `Arrays Chapter`
 
 **Recursion Concept**
+
 ✨ 1. Basic of recursion \
 ✨ 2. Divide & Conquer \
 ✨ 3. Backtracking
+
+**Approach**
+
+🎗️ 1. Two pointer approach -> First pointer start index and Last pointer end index \
+🎗️ 2. Slow Fast approach -> Slow increment by one and Fast increment by two
+
+---
+
+**Type of Data Structure**
+
+🤞 1. Stack -> LIFO Data Structure (Last in First out) element \
+🤞 2. Queue -> FIFO Data Structure (First in First out) element
