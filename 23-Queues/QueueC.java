@@ -1,3 +1,6 @@
+import java.util.*;
+import java.util.LinkedList;
+
 public class QueueC {
     // Array --------------------------------
     // static class Queue {
@@ -103,54 +106,54 @@ public class QueueC {
     // }
 
     // LinkedList --------------------------------
-    static class Node {
-        int data;
-        Node next;
+    // static class Node {
+    //     int data;
+    //     Node next;
 
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
+    //     Node(int data) {
+    //         this.data = data;
+    //         this.next = null;
+    //     }
+    // }
 
-    static class Queue {
-        static Node head = null;
-        static Node tail = null;
+    // static class Queue {
+    //     static Node head = null;
+    //     static Node tail = null;
 
-        public boolean isEmpty() {
-            return head == null && tail == null;
-        }
+    //     public boolean isEmpty() {
+    //         return head == null && tail == null;
+    //     }
 
-        public void add(int data) { // add TC -> O(1)
-            Node newNode = new Node(data);
-            if (isEmpty()) { // first element add
-                head = tail = newNode;
-                return;
-            }
-            tail.next = newNode;
-            tail = newNode;
-        }
+    //     public void add(int data) { // add TC -> O(1)
+    //         Node newNode = new Node(data);
+    //         if (isEmpty()) { // first element add
+    //             head = tail = newNode;
+    //             return;
+    //         }
+    //         tail.next = newNode;
+    //         tail = newNode;
+    //     }
 
-        public int remove() { // remove TC -> O(1)
-            if (isEmpty()) {
-                return -1;
-            }
-            int front = head.data;
-            if (head == tail) { // last element delete
-                head = tail = null;
-            } else {
-                head = head.next;
-            }
-            return front;
-        }
+    //     public int remove() { // remove TC -> O(1)
+    //         if (isEmpty()) {
+    //             return -1;
+    //         }
+    //         int front = head.data;
+    //         if (head == tail) { // last element delete
+    //             head = tail = null;
+    //         } else {
+    //             head = head.next;
+    //         }
+    //         return front;
+    //     }
 
-        public int peek() { // peek TC -> O(1)
-            if (isEmpty()) {
-                return -1;
-            }
-            return head.data;
-        }
-    }
+    //     public int peek() { // peek TC -> O(1)
+    //         if (isEmpty()) {
+    //             return -1;
+    //         }
+    //         return head.data;
+    //     }
+    // }
 
     public static void main(String[] args) {
         // Queue using Arrays --------------------------------
@@ -178,11 +181,23 @@ public class QueueC {
         // }
 
         // Queue using LinkedList --------------------------------
-        Queue q = new Queue();
+        // Queue q = new Queue();
+        // q.add(1);
+        // q.add(2);
+        // q.add(3);
+        // while (!q.isEmpty()) { // Queue Output -> 1 2 3
+        //     System.out.println(q.peek());
+        //     q.remove(); 
+        // }
+
+        // Stack using Collections framework --------------------------------
+        // Queue is an interface its not an object so create it from LinkedList & ArrayDeque --
+        Queue<Integer> q = new LinkedList<>(); // LinkedList
+        // Queue<Integer> q = new ArrayDeque<>(); // ArrayDeque
         q.add(1);
         q.add(2);
         q.add(3);
-        while (!q.isEmpty()) { // Queue Output -> 1 2 3
+        while (!q.isEmpty()) {
             System.out.println(q.peek());
             q.remove();
         }
