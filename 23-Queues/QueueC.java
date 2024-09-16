@@ -155,6 +155,40 @@ public class QueueC {
     //     }
     // }
 
+    // 2 Stack --------------------------------
+    static class Queue {
+        static Stack<Integer> s1 = new Stack<>();
+        static Stack<Integer> s2 = new Stack<>();
+
+        public boolean isEmpty() {
+            return s1.isEmpty();
+        }
+
+        public void add(int data) { // add TC -> O(2n) = O(n)
+            while (!s1.isEmpty()) { // O(n)
+                s2.push(s1.pop()); // move element s1 to s2
+            }
+            s1.push(data); // O(1)
+            while (!s2.isEmpty()) { // O(n)
+                s1.push(s2.pop()); // move element s2 to s1
+            }
+        }
+
+        public int remove() { // remove TC -> O(1)
+            if (isEmpty()) {
+                return -1;
+            }
+            return s1.pop();
+        }
+
+        public int peek() { // peek TC -> O(1)
+            if (isEmpty()) {
+                return -1;
+            }
+            return s1.peek();
+        }
+    }
+
     public static void main(String[] args) {
         // Queue using Arrays --------------------------------
         // Queue q = new Queue(5); // size of queue = 5 (array size)
@@ -190,14 +224,24 @@ public class QueueC {
         //     q.remove(); 
         // }
 
-        // Stack using Collections framework --------------------------------
+        // Queue using Collections framework --------------------------------
         // Queue is an interface its not an object so create it from LinkedList & ArrayDeque --
-        Queue<Integer> q = new LinkedList<>(); // LinkedList
+        // Queue<Integer> q = new LinkedList<>(); // LinkedList
         // Queue<Integer> q = new ArrayDeque<>(); // ArrayDeque
+        // q.add(1);
+        // q.add(2);
+        // q.add(3);
+        // while (!q.isEmpty()) {
+        //     System.out.println(q.peek());
+        //     q.remove();
+        // }
+
+        // Queue using 2 Stack --------------------------------
+        Queue q = new Queue();
         q.add(1);
         q.add(2);
         q.add(3);
-        while (!q.isEmpty()) {
+        while (!q.isEmpty()) { // Queue Output -> 1 2 3
             System.out.println(q.peek());
             q.remove();
         }
