@@ -48,63 +48,113 @@ public class QueueC {
     // }
 
     // Circular Queue using Arrays --------------------------------
-    public static class Queue {
-        static int arr[];
-        static int size;
-        static int rear;
-        static int front;
+    // static class Queue {
+    //     static int arr[];
+    //     static int size;
+    //     static int rear;
+    //     static int front;
 
-        Queue(int n) {
-            arr = new int[n];
-            size = n;
-            rear = -1;
-            front = -1;
+    //     Queue(int n) {
+    //         arr = new int[n];
+    //         size = n;
+    //         rear = -1;
+    //         front = -1;
+    //     }
+
+    //     public boolean isEmpty() {
+    //         return rear == -1 && front == -1;
+    //     }
+
+    //     public boolean isFull() {
+    //         return (rear + 1) % size == front; // rear + 1 == front (full)
+    //     }
+
+    //     public void add(int data) { // add TC -> O(1)
+    //         if (isFull()) {
+    //             System.out.println("Queue is full");
+    //             return;
+    //         }
+    //         if (front == -1) { // add first element
+    //             front = 0;
+    //         }
+    //         rear = (rear + 1) % size; // size = 3 (rear = 0,1,2,0,1..)
+    //         arr[rear] = data;
+    //     }
+
+    //     public int remove() { // remove TC -> O(1)
+    //         if (isEmpty()) {
+    //             return -1;
+    //         }
+    //         int data = arr[front];
+    //         if (rear == front) { // last element delete
+    //             rear = front = -1;
+    //         } else {
+    //             front = (front + 1) % size;
+    //         }
+    //         return data;
+    //     }
+
+    //     public int peek() { // peek TC -> O(1)
+    //         if (isEmpty()) {
+    //             return -1;
+    //         }
+    //         return arr[front];
+    //     }
+    // }
+
+    // LinkedList --------------------------------
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
         }
+    }
+
+    static class Queue {
+        static Node head = null;
+        static Node tail = null;
 
         public boolean isEmpty() {
-            return rear == -1 && front == -1;
-        }
-
-        public boolean isFull() {
-            return (rear + 1) % size == front; // rear + 1 == front (full)
+            return head == null && tail == null;
         }
 
         public void add(int data) { // add TC -> O(1)
-            if (isFull()) {
-                System.out.println("Queue is full");
+            Node newNode = new Node(data);
+            if (isEmpty()) { // first element add
+                head = tail = newNode;
                 return;
             }
-            if (front == -1) { // add first element
-                front = 0;
-            }
-            rear = (rear + 1) % size; // size = 3 (rear = 0,1,2,0,1..)
-            arr[rear] = data;
+            tail.next = newNode;
+            tail = newNode;
         }
 
         public int remove() { // remove TC -> O(1)
             if (isEmpty()) {
                 return -1;
             }
-            int data = arr[front];
-            if (rear == front) { // last element delete
-                rear = front = -1;
+            int front = head.data;
+            if (head == tail) { // last element delete
+                head = tail = null;
             } else {
-                front = (front + 1) % size;
+                head = head.next;
             }
-            return data;
+            return front;
         }
 
         public int peek() { // peek TC -> O(1)
             if (isEmpty()) {
                 return -1;
             }
-            return arr[front];
+            return head.data;
         }
     }
 
     public static void main(String[] args) {
         // Queue using Arrays --------------------------------
-        // Queue q = new Queue(5);
+        // Queue q = new Queue(5); // size of queue = 5 (array size)
         // q.add(1);
         // q.add(2);
         // q.add(3);
@@ -114,15 +164,25 @@ public class QueueC {
         // }       
 
         // Circular Queue using Arrays --------------------------------
-        Queue q = new Queue(3);
+        // Queue q = new Queue(3); // size of queue = 5 (array size)
+        // q.add(1);
+        // q.add(2);
+        // q.add(3);
+        // System.out.println(q.remove());
+        // q.add(4);
+        // System.out.println(q.remove());
+        // q.add(5);
+        // while (!q.isEmpty()) { // Circular Queue Output -> 1 2 3 4 5
+        //     System.out.println(q.peek());
+        //     q.remove();
+        // }
+
+        // Queue using LinkedList --------------------------------
+        Queue q = new Queue();
         q.add(1);
         q.add(2);
         q.add(3);
-        System.out.println(q.remove());
-        q.add(4);
-        System.out.println(q.remove());
-        q.add(5);
-        while (!q.isEmpty()) { // Circular Queue Output -> 1 2 3 4 5
+        while (!q.isEmpty()) { // Queue Output -> 1 2 3
             System.out.println(q.peek());
             q.remove();
         }
