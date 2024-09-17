@@ -276,6 +276,19 @@ public class QueueC {
         }
     }
 
+    // Interleave two halves of a Queue --------------------------------
+    public static void interLeave(Queue<Integer> q) {
+        Queue<Integer> firstHalfQ = new LinkedList<>(); // first half queue for helper
+        int size = q.size(); // store queue size otherwise queue size is determined
+        for (int i = 0; i < size / 2; i++) {
+            firstHalfQ.add(q.remove());
+        }
+        while (!firstHalfQ.isEmpty()) {
+            q.add(firstHalfQ.remove());
+            q.add(q.remove());
+        }
+    }
+
     public static void main(String[] args) {
         // Queue using Arrays --------------------------------
         // Queue q = new Queue(5); // size of queue = 5 (array size)
@@ -347,7 +360,24 @@ public class QueueC {
         // First non-repeating latter in a stream of characters. (Solve using Queue)
         String str = "aabccxb";
         printNonRepeating(str);
+        System.out.println();
 
-        // 
+        // Interleave two halves of a Queue --------------------------------
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
+        q.add(5);
+        q.add(6);
+        q.add(7);
+        q.add(8);
+        q.add(9);
+        q.add(10);
+        interLeave(q);
+        while (!q.isEmpty()) {
+            System.out.print(q.peek() + " ");
+            q.remove();
+        }
     }
 }
