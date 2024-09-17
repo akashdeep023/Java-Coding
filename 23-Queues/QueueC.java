@@ -252,7 +252,7 @@ public class QueueC {
     // }
 
     // First Non-Repeating latter --------------------------------
-    public static void printNonRepeating(String str) {
+    public static void printNonRepeating(String str) { // TC -> O(n)
         Queue<Character> q = new LinkedList<>(); // Use Queue because first character is need
         int freq[] = new int[26]; // 'a' to 'z'
         for (int i = 0; i < str.length(); i++) { // loop for each character traversed
@@ -262,8 +262,14 @@ public class QueueC {
             while (!q.isEmpty() && freq[q.peek() - 'a'] > 1) {
                 q.remove();
             }
+            if (q.isEmpty()) {
+                System.out.print("-1" + " ");
+            } else {
+                System.out.print(q.peek() + " ");
+            }
         }
-        if (q.isEmpty()) {
+        System.out.println();
+        if (q.isEmpty()) { // print last non-repeating character
             System.out.println("No First non-repeating letter");
         } else {
             System.out.println("First non-repeating letter : " + q.peek());
@@ -341,5 +347,7 @@ public class QueueC {
         // First non-repeating latter in a stream of characters. (Solve using Queue)
         String str = "aabccxb";
         printNonRepeating(str);
+
+        // 
     }
 }
