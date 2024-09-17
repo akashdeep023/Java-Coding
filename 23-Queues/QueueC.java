@@ -277,7 +277,7 @@ public class QueueC {
     }
 
     // Interleave two halves of a Queue --------------------------------
-    public static void interLeave(Queue<Integer> q) {
+    public static void interLeave(Queue<Integer> q) { // TC = SC = O(n)
         Queue<Integer> firstHalfQ = new LinkedList<>(); // first half queue for helper
         int size = q.size(); // store queue size otherwise queue size is determined
         for (int i = 0; i < size / 2; i++) {
@@ -286,6 +286,17 @@ public class QueueC {
         while (!firstHalfQ.isEmpty()) {
             q.add(firstHalfQ.remove());
             q.add(q.remove());
+        }
+    }
+
+    // Queue r eversal --------------------------------
+    public static void reverse(Queue<Integer> q) {
+        Stack<Integer> s = new Stack<>();
+        while (!q.isEmpty()) {
+            s.push(q.remove());
+        }
+        while (!s.isEmpty()) {
+            q.add(s.pop());
         }
     }
 
@@ -373,11 +384,26 @@ public class QueueC {
         q.add(7);
         q.add(8);
         q.add(9);
-        q.add(10);
-        interLeave(q);
+        q.add(10); // Input -> 1 2 3 4 5 6 7 8 9 10
+        interLeave(q); // Output -> 1 6 2 7 3 8 4 9 5 10
         while (!q.isEmpty()) {
             System.out.print(q.peek() + " ");
             q.remove();
         }
+        System.out.println("\n");
+
+        // Queue reversal --------------------------------
+        Queue<Integer> q1 = new LinkedList<>();
+        q1.add(1);
+        q1.add(2);
+        q1.add(3);
+        q1.add(4);
+        q1.add(5); // Input -> 1 2 3 4 5
+        reverse(q1); // Output -> 5 4 3 2 1 
+        while (!q1.isEmpty()) {
+            System.out.print(q1.peek() + " ");
+            q1.remove();
+        }
+        System.out.println();
     }
 }
