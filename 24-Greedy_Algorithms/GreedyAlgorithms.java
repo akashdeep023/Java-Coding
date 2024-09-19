@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.Arrays;
+import java.lang.Math;
 
 public class GreedyAlgorithms {
     public static void main(String[] args) {
@@ -14,7 +15,8 @@ public class GreedyAlgorithms {
         // Pros -> Simple & easy, Good enough Time complexity 
         // Cons -> A lot of time, global optimum is not achived
 
-        // Activity selection -------------------------------- (Same problem -> Disjoint Set or Max meeting in a room)
+        // Activity selection -------------------------------- TC -> O(nlogn)
+        // (Same problem -> Disjoint Set or Max meeting in a room)
         // You are given n activities with their start and end times. Select the maximum number of activities that can be 
         // performed by a single person, assuming that a person can only work on a single activity at a time. 
         // Activities are sorted according to end time.
@@ -53,13 +55,13 @@ public class GreedyAlgorithms {
             }
         }
         // Print activity
-        System.out.println("Max activities : " + maxAct);
+        System.out.println("Max activities : " + maxAct); // Output -> 4
         for (int i = 0; i < ans.size(); i++) {
             System.out.print("A" + ans.get(i) + " ");
         }
         System.out.println("\n");
 
-        // Fractional Knapsack(Bag) --------------------------------
+        // Fractional Knapsack(Bag) -------------------------------- TC -> O(nlogn)
         // Given the weights and values of N items, put these items in a knapsack of capacity W to get
         // the maximum total value in the knapsack.
         int val[] = { 60, 100, 120 };
@@ -85,7 +87,24 @@ public class GreedyAlgorithms {
                 break; // capacity full
             }
         }
-        System.out.println("Price : " + finalVal);
+        System.out.println("Price : " + finalVal); // Output -> 240
+        System.out.println();
 
+        // Minimum Sum Absolute Difference Pairs. -------------------------------- TC -> O(nlogn)
+        // Given two arrays A and B of equal length n, Pair each element of array A to an element in array B,
+        // such that Sum S of absolute difference of all  the pairs is minimum.
+        // int A[] = { 1, 2, 3 };
+        // int B[] = { 2, 1, 3 }; // Output -> 0
+        int A[] = { 4, 1, 8, 7 };
+        int B[] = { 2, 3, 6, 5 }; // Output -> 6
+
+        // Sort ascending order of elements
+        Arrays.sort(A);
+        Arrays.sort(B);
+        int minDiff = 0;
+        for (int i = 0; i < A.length; i++) {
+            minDiff += Math.abs(A[i] - B[i]);
+        }
+        System.out.println("Min Sum Abs difference : " + minDiff);
     }
 }
