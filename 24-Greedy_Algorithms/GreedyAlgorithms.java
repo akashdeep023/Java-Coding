@@ -57,6 +57,35 @@ public class GreedyAlgorithms {
         for (int i = 0; i < ans.size(); i++) {
             System.out.print("A" + ans.get(i) + " ");
         }
-        System.out.println();
+        System.out.println("\n");
+
+        // Fractional Knapsack(Bag) --------------------------------
+        // Given the weights and values of N items, put these items in a knapsack of capacity W to get
+        // the maximum total value in the knapsack.
+        int val[] = { 60, 100, 120 };
+        int weight[] = { 10, 20, 30 };
+        int w = 50;
+
+        double ratio[][] = new double[val.length][2];
+        // ratio sorting in ascending order
+        for (int i = 0; i < val.length; i++) {
+            ratio[i][0] = i; // 0st col = index
+            ratio[i][1] = val[i] / (double) weight[i]; // 1st col = ratio
+        }
+        Arrays.sort(ratio, Comparator.comparingDouble(o -> o[1])); // sort ascending order
+        int finalVal = 0;
+        int capacity = w;
+        for (int i = ratio.length - 1; i >= 0; i--) { // reverse loop because we should max values
+            int idx = (int) ratio[i][0];
+            if (capacity >= weight[idx]) { // include full item
+                capacity = capacity - weight[idx];
+                finalVal += val[idx];
+            } else { // include fractional item
+                finalVal += capacity * ratio[i][1];
+                break; // capacity full
+            }
+        }
+        System.out.println("Price : " + finalVal);
+
     }
 }
