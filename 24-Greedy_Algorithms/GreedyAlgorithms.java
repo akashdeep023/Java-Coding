@@ -3,6 +3,18 @@ import java.util.Arrays;
 import java.lang.Math;
 
 public class GreedyAlgorithms {
+    static class Job {
+        int id; // 1(A), 2(B), 3(C), 4(D)....
+        int deadline;
+        int profit;
+
+        public Job(int i, int d, int p) {
+            id = i;
+            deadline = d;
+            profit = p;
+        }
+    }
+
     public static void main(String[] args) {
         // Gready algorithm (Base on Real tife example) --------------------------------
         // 1st -> Optimization (min , max)
@@ -149,6 +161,39 @@ public class GreedyAlgorithms {
         System.out.println("Min no of Coins/Notes : " + ansCoins.size());
         for (int i = 0; i < ansCoins.size(); i++) {
             System.out.print(ansCoins.get(i) + " ");
+        }
+        System.out.println("\n");
+
+        // Job Sequence Problem -------------------------------- TC -> O(nlogn)
+        // Given an array of jobs where every job has a deadline and profit it the job is finished before the deadline.
+        // It is also given that every job takes a single unit of time, so the minimum possible deadline is for any job is 1.
+        // Maximum the total profit if only one job can be scheduled at a time.
+        int jobInfo[][] = {
+                { 4, 20 },
+                { 1, 10 },
+                { 1, 40 },
+                { 1, 30 }
+        };
+        // Create static Job class ---
+        ArrayList<Job> jobs = new ArrayList<>(); // Create ArrayList of Job type
+        for (int i = 0; i < jobInfo.length; i++) {
+            Job curr = new Job(i, jobInfo[i][0], jobInfo[i][1]); // Create Job
+            jobs.add(curr); // Add Job in ArrayList
+        }
+        Collections.sort(jobs, (job1, job2) -> job2.profit - job1.profit); // sort descending order based on profit
+        int time = 0; // start time
+        ArrayList<Integer> seq = new ArrayList<>(); // ArrayList to store sequence
+        for (int i = 0; i < jobs.size(); i++) {
+            Job curr = jobs.get(i);
+            if (curr.deadline > time) {
+                seq.add(curr.id);
+                time++;
+            }
+        }
+        // Print Job sequence
+        System.out.println("Max Job sequence : " + seq.size());
+        for (int i = 0; i < seq.size(); i++) {
+            System.out.print((char) ('A' + seq.get(i)) + " ");
         }
     }
 }
