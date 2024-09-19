@@ -195,5 +195,44 @@ public class GreedyAlgorithms {
         for (int i = 0; i < seq.size(); i++) {
             System.out.print((char) ('A' + seq.get(i)) + " ");
         }
+        System.out.println("\n");
+
+        // Chocola Problem --------------------------------
+        // We are given a bar of chocolate composed of m x n square pieces. One should break the chocolate into single squares.
+        // Each break of a part of the chocolate is charged a cost expressed by a positive integer. This cost does not depend 
+        // on the size of the part that is being broken but only depends on the line the break goes along. Let us denote the costs
+        // of breaking alog consecutive vertical lines with x1,x2,x3,...,sm-1 and along horizontal lines with y1,y2,y3,...,yn-1.
+        // Compute the minimum cost of breaking the whole chocolate into sinngle square pieces.
+        int n = 4, m = 6; // number of chocolate pieces = n X m
+        Integer costVer[] = { 2, 1, 3, 1, 4 };
+        Integer costHor[] = { 4, 1, 2 };
+
+        Arrays.sort(costVer, Comparator.reverseOrder()); // sort reverse order
+        Arrays.sort(costHor, Comparator.reverseOrder()); // sort reverse order
+        int h = 0, v = 0; // horizontal pointer or vertical pointer
+        int hp = 1, vp = 1;
+        int cost = 0;
+        while (h < costHor.length && v < costVer.length) {
+            if (costHor[h] <= costVer[v]) { // vertical cut
+                cost += costVer[v] * hp; // cost = cost of vertical cut * horizontal peices
+                vp++; // vertical peices increment by 1
+                v++;
+            } else { // horizontal cut
+                cost += costHor[h] * vp; // cost = cost of horizontal cut * vertical peices
+                hp++; // horizontal peices increment by 1
+                h++;
+            }
+        }
+        while (v < costVer.length) { // extra vertical cut
+            cost += costVer[v] * hp; // cost = cost of vertical cut * horizontal peices
+            vp++; // vertical peices increment by 1
+            v++;
+        }
+        while (h < costHor.length) { // extra horizontal cut
+            cost += costHor[h] * vp; // cost = cost of horizontal cut * vertical peices
+            hp++; // horizontal peices increment by 1
+            h++;
+        }
+        System.out.println("Min cost of cuts : " + cost);
     }
 }
