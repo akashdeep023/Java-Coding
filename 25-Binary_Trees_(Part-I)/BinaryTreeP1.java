@@ -38,6 +38,17 @@ public class BinaryTreeP1 {
             preorder(root.left); // print root left
             preorder(root.right); // print root right
         }
+
+        // Inorder Traversal -------------------------------- TC -> O(n)
+        public void inorder(Node root) { // Recursive traversal
+            if (root == null) {
+                // System.out.print(-1 + " ");
+                return;
+            }
+            inorder(root.left); // print root left
+            System.out.print(root.data + " "); // print root data
+            inorder(root.right); // print root right
+        }
     }
 
     public static void main(String[] args) {
@@ -62,6 +73,10 @@ public class BinaryTreeP1 {
 
         // Preorder Traversal --------------------------------
         tree.preorder(root); // 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1
+        System.out.println("\n");
+
+        // Inorder Traversal --------------------------------
+        tree.inorder(root); // 4 2 5 1 3 6 (without -1)
         System.out.println();
 
     }
