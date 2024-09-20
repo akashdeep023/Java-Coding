@@ -16,6 +16,7 @@ public class BinaryTreeP1 {
     static class BinaryTree {
         static int idx = -1;
 
+        // Build Tree Preorder -------------------------------- TC -> O(n)
         public Node buildTree(int nodes[]) {
             idx++;
             if (nodes[idx] == -1) {
@@ -25,6 +26,17 @@ public class BinaryTreeP1 {
             newNode.left = buildTree(nodes); // left node
             newNode.right = buildTree(nodes); // right node
             return newNode; // root node
+        }
+
+        // Preorder Traversal -------------------------------- TC -> O(n)
+        public void preorder(Node root) { // Recursive traversal
+            if (root == null) { // base case
+                System.out.print(-1 + " ");
+                return;
+            }
+            System.out.print(root.data + " "); // print root data
+            preorder(root.left); // print root left
+            preorder(root.right); // print root right
         }
     }
 
@@ -41,11 +53,16 @@ public class BinaryTreeP1 {
         // Ancestor of 8 -> 4,2,1                          / \       \
         // Subtree of 2 -> Left(4,7,8),Right(5)           7   8       9
 
-        // Build Tree Preorder -------------------------------- TC -> O(n)
+        // Build Tree Preorder --------------------------------
         int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 }; // preorder sequence
         BinaryTree tree = new BinaryTree();
         Node root = tree.buildTree(nodes);
-        System.out.println(root.data); // root data -> 1
+        System.out.println("Root data : " + root.data); // root data -> 1
+        System.out.println();
+
+        // Preorder Traversal --------------------------------
+        tree.preorder(root); // 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1
+        System.out.println();
 
     }
 }
