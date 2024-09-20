@@ -1,3 +1,6 @@
+import java.util.*;
+import java.util.LinkedList;
+
 public class BinaryTreeP1 {
     // Create Node class
     static class Node {
@@ -60,6 +63,35 @@ public class BinaryTreeP1 {
             postorder(root.right); // print root right
             System.out.print(root.data + " "); // print root data
         }
+
+        // Level order Traversal -------------------------------- TC -> O(2n) -> O(n)
+        public void leverorder(Node root) { // Iterative traversal
+            if (root == null) {
+                return;
+            }
+            Queue<Node> q = new LinkedList<>();
+            q.add(root);
+            q.add(null); // for next line print
+            while (!q.isEmpty()) {
+                Node curr = q.remove();
+                if (curr == null) {
+                    if (q.isEmpty()) {
+                        break;
+                    } else {
+                        q.add(null); // for next line print
+                    }
+                    System.out.println();
+                } else {
+                    System.out.print(curr.data + " ");
+                    if (curr.left != null) {
+                        q.add(curr.left);
+                    }
+                    if (curr.right != null) {
+                        q.add(curr.right);
+                    }
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -92,6 +124,10 @@ public class BinaryTreeP1 {
 
         // Postorder Traversal -------------------------------- 
         tree.postorder(root); // 4 5 2 6 3 1 (without -1)
+        System.out.println("\n");
+
+        // Level order Traversal -------------------------------- 
+        tree.leverorder(root);
         System.out.println();
 
     }
