@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.LinkedList;
+import java.lang.Math;
 
 public class BinaryTreeP1 {
     // Create Node class
@@ -92,6 +93,17 @@ public class BinaryTreeP1 {
                 }
             }
         }
+
+        // Height of a Tree -------------------------------- TC -> O(n)
+        public int height(Node root) {
+            if (root == null) {
+                return 0;
+            }
+            int hl = height(root.left);
+            int hr = height(root.right);
+            int totalHeight = Math.max(hl, hr) + 1; // child height + self height(1)
+            return totalHeight;
+        }
     }
 
     public static void main(String[] args) {
@@ -128,7 +140,17 @@ public class BinaryTreeP1 {
 
         // Level order Traversal -------------------------------- 
         tree.leverorder(root);
-        System.out.println();
+        System.out.println("\n");
+
+        // Height of a Tree --------------------------------
+        /*
+                 1 
+                / \
+              2     3
+             / \     \
+            4   5     6          
+        */
+        System.out.println("Tree height : " + tree.height(root));
 
     }
 }
