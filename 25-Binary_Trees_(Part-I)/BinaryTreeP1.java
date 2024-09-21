@@ -66,7 +66,7 @@ public class BinaryTreeP1 {
         }
 
         // Level order Traversal -------------------------------- TC -> O(2n) -> O(n)
-        public void leverorder(Node root) { // Iterative traversal
+        public void levelorder(Node root) { // Iterative traversal
             if (root == null) {
                 return;
             }
@@ -104,6 +104,17 @@ public class BinaryTreeP1 {
             int totalHeight = Math.max(hl, hr) + 1; // child height + self height(1)
             return totalHeight;
         }
+
+        // Count of Nodes of a tree -------------------------------- TC -> O(n)
+        public int countOfNodes(Node root) {
+            if (root == null) {
+                return 0;
+            }
+            int leftCount = countOfNodes(root.left); // left child count
+            int rightCount = countOfNodes(root.right); // right child count
+            int totalNodes = leftCount + rightCount + 1; // left + right + root
+            return totalNodes;
+        }
     }
 
     public static void main(String[] args) {
@@ -139,7 +150,7 @@ public class BinaryTreeP1 {
         System.out.println("\n");
 
         // Level order Traversal -------------------------------- 
-        tree.leverorder(root);
+        tree.levelorder(root);
         System.out.println("\n");
 
         // Height of a Tree --------------------------------
@@ -151,6 +162,9 @@ public class BinaryTreeP1 {
             4   5     6          
         */
         System.out.println("Tree height : " + tree.height(root));
+        System.out.println();
 
+        // Count of Nodes of a tree --------------------------------
+        System.out.println("Count of Nodes : " + tree.countOfNodes(root));
     }
 }
