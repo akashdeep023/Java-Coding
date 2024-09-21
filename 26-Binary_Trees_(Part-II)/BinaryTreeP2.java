@@ -62,6 +62,34 @@ public class BinaryTreeP2 {
         return new Info(finalDiam, finalHt);
     }
 
+    // Subtree of another tree -------------------------------- Tc O(n)
+    public static boolean isSubtree(Node root, Node subRoot) {
+        if (root == null) { // base case
+            return false;
+        }
+        if (root.data == subRoot.data) { // find node (root == subRoot)
+            if (isIdentical(root, subRoot)) { // check identical
+                return true;
+            }
+        }
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot); // find node (root == subRoot)
+    }
+
+    public static boolean isIdentical(Node node, Node subRoot) { // helper method
+        if (node == null && subRoot == null) { // node == subRoot == null
+            return true;
+        } else if (node == null || subRoot == null || node.data != subRoot.data) { // node.data is not equal subRoot.data
+            return false;
+        }
+        if (!isIdentical(node.left, subRoot.left)) { // Check left child node is non-identical
+            return false;
+        }
+        if (!isIdentical(node.right, subRoot.right)) { // Check right child node is non-identical
+            return false;
+        }
+        return true; // subTree is identical
+    }
+
     public static void main(String[] args) {
         // Diameter of a Tree --------------------------------
         /*
@@ -97,6 +125,25 @@ public class BinaryTreeP2 {
         Info info = diameterA2(root);
         System.out.println("Diameter A21 : " + info.diam); // 5
         System.out.println("Height A21 : " + info.ht); // 3
+        System.out.println();
+
+        // Subtree of another tree --------------------------------
+        /*
+                     1             
+                    / \    
+                  2     3    Node root = 1;
+                 / \     \ 
+                4   5     6        
+        */
+        Node subRoot = new Node(2);
+        subRoot.left = new Node(4);
+        subRoot.right = new Node(5);
+        /*
+                  2           
+                 / \         Node subRoot = 2;
+                4   5
+        */
+        System.out.println("Subtree of another tree : " + isSubtree(root, subRoot));
 
     }
 }
