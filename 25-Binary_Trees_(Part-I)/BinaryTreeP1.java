@@ -115,6 +115,17 @@ public class BinaryTreeP1 {
             int totalNodes = leftCount + rightCount + 1; // left + right + root
             return totalNodes;
         }
+
+        // Sum of Nodes -------------------------------- TC -> O(n)
+        public int sumOfNodes(Node root) {
+            if (root == null) {
+                return 0;
+            }
+            int leftSum = sumOfNodes(root.left); // left child sum
+            int rightSum = sumOfNodes(root.right); // right child sum
+            int totalSum = leftSum + rightSum + root.data; // left + right + root data
+            return totalSum;
+        }
     }
 
     public static void main(String[] args) {
@@ -166,7 +177,9 @@ public class BinaryTreeP1 {
 
         // Count of Nodes of a tree --------------------------------
         System.out.println("Count of Nodes : " + tree.countOfNodes(root));
+        System.out.println();
 
         // Sum of Nodes --------------------------------
+        System.out.println("Sum of Nodes : " + tree.sumOfNodes(root));
     }
 }
