@@ -131,6 +131,13 @@ public class BinaryTreeP1 {
         // Subtree of 2 -> Left(4,7,8),Right(5)           7   8       9
 
         // Build Tree Preorder --------------------------------
+        /*
+                 1 
+                / \
+              2     3
+             / \     \
+            4   5     6          
+        */
         int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 }; // preorder sequence
         BinaryTree tree = new BinaryTree();
         Node root = tree.buildTree(nodes);
@@ -154,17 +161,12 @@ public class BinaryTreeP1 {
         System.out.println("\n");
 
         // Height of a Tree --------------------------------
-        /*
-                 1 
-                / \
-              2     3
-             / \     \
-            4   5     6          
-        */
         System.out.println("Tree height : " + tree.height(root));
         System.out.println();
 
         // Count of Nodes of a tree --------------------------------
         System.out.println("Count of Nodes : " + tree.countOfNodes(root));
+
+        // Sum of Nodes --------------------------------
     }
 }
