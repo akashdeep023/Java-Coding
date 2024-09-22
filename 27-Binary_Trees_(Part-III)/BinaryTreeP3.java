@@ -78,6 +78,33 @@ public class BinaryTreeP3 {
         return root; // otherwise return root
     }
 
+    // Minimum Distance between two nodes -------------------------------- TC -> O(n)
+    public static int minDist(Node root, int n1, int n2) {
+        Node lca = lowestCommonAncestorA2(root, n1, n2);
+        int dist1 = lcaDist(lca, n1);
+        int dist2 = lcaDist(lca, n2);
+        return dist1 + dist2;
+
+    }
+
+    public static int lcaDist(Node lca, int n) {
+        if (lca == null) {
+            return -1; // not exists
+        }
+        if (lca.data == n) {
+            return 0; // node to node distance 0 
+        }
+        int leftDist = lcaDist(lca.left, n);
+        int rightDist = lcaDist(lca.right, n);
+        if (leftDist == -1 && rightDist == -1) {
+            return -1;
+        } else if (leftDist == -1) {
+            return rightDist + 1;
+        } else {
+            return leftDist + 1;
+        }
+    }
+
     public static void main(String[] args) {
         /* Create a Tree --------------------------------
                  1      
@@ -110,6 +137,13 @@ public class BinaryTreeP3 {
         // Approach - 2 ---
         System.out.println("LCA A2 : " + lowestCommonAncestorA2(root, n1, n2).data);
         System.out.println("LCA A2 : " + lowestCommonAncestorA2(root, n3, n4).data);
+        System.out.println();
+
+        // Minimum Distance between two nodes --------------------------------
+        // n1 = 4 or n2 = 6 Output -> 4
+        // n3 = 4 or n4 = 5 Output -> 2
+        System.out.println("Minimum Distance between nodes : " + minDist(root, n1, n2));
+        System.out.println("Minimum Distance between nodes : " + minDist(root, n3, n4));
 
     }
 }
