@@ -1,3 +1,5 @@
+import java.util.*;
+import java.util.LinkedList;
 import java.lang.Math;
 
 public class BinaryTreeP2 {
@@ -90,6 +92,54 @@ public class BinaryTreeP2 {
         return true; // subTree is identical
     }
 
+    // Infom class to store Node and horizontal distance --- helper class
+    static class Infom {
+        Node node; // node
+        int hd; // horizontal distance
+
+        public Infom(Node node, int hd) {
+            this.hd = hd;
+            this.node = node;
+        }
+    }
+
+    // Top View of a Tree --------------------------------
+    public static void topView(Node root) {
+        // Level order traversal
+        Queue<Infom> q = new LinkedList<>(); // helper 
+        HashMap<Integer, Node> map = new HashMap<>(); // Create map (hd,node)
+        int min = 0, max = 0; // Print all nodes by order
+
+        q.add(new Infom(root, 0)); // Add first node and horizontal distance = 0
+        q.add(null); // For print next line
+        while (!q.isEmpty()) {
+            Infom curr = q.remove();
+            if (curr == null) {
+                if (q.isEmpty()) {
+                    break; // traversal all nodes
+                } else {
+                    q.add(null); // For print next line
+                }
+            } else {
+                if (!map.containsKey(curr.hd)) { // First time my hd is occurring -> !false -> true
+                    map.put(curr.hd, curr.node);
+                }
+                if (curr.node.left != null) {
+                    q.add(new Infom(curr.node.left, curr.hd - 1));
+                    min = Math.min(min, curr.hd - 1);
+                }
+                if (curr.node.right != null) {
+                    q.add(new Infom(curr.node.right, curr.hd + 1));
+                    max = Math.max(max, curr.hd + 1);
+                }
+            }
+        }
+        for (int i = min; i <= max; i++) {
+            System.out.print(map.get(i).data + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         // Diameter of a Tree --------------------------------
         /*
@@ -128,6 +178,8 @@ public class BinaryTreeP2 {
         System.out.println();
 
         // Subtree of another tree --------------------------------
+        // Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with
+        // the same structure and node values of subRoot and false otherwise.
         /*
                      1             
                     / \    
@@ -144,6 +196,35 @@ public class BinaryTreeP2 {
                 4   5
         */
         System.out.println("Subtree of another tree : " + isSubtree(root, subRoot));
+        System.out.println();
+
+        // Top View of a Tree --------------------------------
+        /*
+                     1             
+                    / \    
+                  2     3    Node root = 1;
+                 / \     \ 
+                4   5     6        
+        */
+        Node secRoot = new Node(1);
+        secRoot.left = new Node(2);
+        secRoot.right = new Node(3);
+        secRoot.left.right = new Node(4);
+        secRoot.left.right.right = new Node(5);
+        secRoot.left.right.right.right = new Node(6);
+        /*
+                     1             
+                    / \    
+                  2     3
+                   \
+                    4           Node secRoot = 1;
+                     \
+                      5        
+                       \
+                        6
+        */
+        topView(root); // 4,2,,1,3,6
+        topView(secRoot); // 2,1,3,6
 
     }
 }
