@@ -125,6 +125,30 @@ public class BinaryTreeP3 {
         return max + 1;
     }
 
+    // Transform of Sum Tree --------------------------------
+    public static int transformSum(Node root) {
+        if (root == null) {
+            return 0; // base case
+        }
+        int leftSum = transformSum(root.left);
+        int rightSum = transformSum(root.right);
+        int data = root.data; // store self data
+        int newLeft = root.left == null ? 0 : root.left.data; // leave case null
+        int newRight = root.right == null ? 0 : root.right.data;
+        // root.data = left node data + right node data + left subtree + right subtree
+        root.data = newLeft + newRight + leftSum + rightSum;
+        return data;
+    }
+
+    public static void preorder(Node root) { // preorder traversal
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.data + " ");
+        preorder(root.left);
+        preorder(root.right);
+    }
+
     public static void main(String[] args) {
         /* Create a Tree --------------------------------
                  1      
@@ -172,6 +196,17 @@ public class BinaryTreeP3 {
         int k2 = 1;
         kthAncestor(root, n, k);
         kthAncestor(root, n, k2);
+        System.out.println();
+
+        // Transform of Sum Tree --------------------------------
+        transformSum(root);
+        preorder(root); // 27 9 0 0 13 0 0
+        /*     27      
+              /  \     
+             9    13   
+            / \   / \  
+           0   0 0   0 
+        */
 
     }
 }
