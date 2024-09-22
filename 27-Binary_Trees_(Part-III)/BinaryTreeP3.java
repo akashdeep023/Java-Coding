@@ -27,7 +27,7 @@ public class BinaryTreeP3 {
         kLevelNode(root.right, level + 1, k);
     }
 
-    // Lowest Common Ancestor -------------------------------- TC -> O(n) SC -> O(n)
+    // Lowest Common Ancestor Approach-1 -------------------------------- TC -> O(n) SC -> O(n)
     public static Node lowestCommonAncestor(Node root, int n1, int n2) {
         ArrayList<Node> path1 = new ArrayList<>(); // create array list to store path root to n1
         getPath(root, n1, path1);
@@ -62,6 +62,22 @@ public class BinaryTreeP3 {
         return false;
     }
 
+    // Lowest Common Ancestor Approach-2 -------------------------------- TC -> O(n) SC -> O(n) like Stack not Auxiliary Space
+    public static Node lowestCommonAncestorA2(Node root, int n1, int n2) {
+        if (root == null || root.data == n1 || root.data == n2) { // lca not exists return null and return root 
+            return root;
+        }
+        Node leftLca = lowestCommonAncestorA2(root.left, n1, n2);
+        Node rightLca = lowestCommonAncestorA2(root.right, n1, n2);
+        if (leftLca == null) { // left subtree side not found then return rightLca (right side exists)
+            return rightLca;
+        }
+        if (rightLca == null) { // right subtree side not found then return leftLca (left side exists)
+            return leftLca;
+        }
+        return root; // otherwise return root
+    }
+
     public static void main(String[] args) {
         /* Create a Tree --------------------------------
                  1      
@@ -86,8 +102,14 @@ public class BinaryTreeP3 {
         // Lowest Common Ancestor --------------------------------
         int n1 = 4, n2 = 6; // Output -> 1
         int n3 = 4, n4 = 5; // Output -> 2
+        // Approach - 1 ---
         System.out.println("LCA : " + lowestCommonAncestor(root, n1, n2).data);
         System.out.println("LCA : " + lowestCommonAncestor(root, n3, n4).data);
+        System.out.println();
+
+        // Approach - 2 ---
+        System.out.println("LCA A2 : " + lowestCommonAncestorA2(root, n1, n2).data);
+        System.out.println("LCA A2 : " + lowestCommonAncestorA2(root, n3, n4).data);
 
     }
 }
