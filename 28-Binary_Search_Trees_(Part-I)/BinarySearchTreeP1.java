@@ -83,6 +83,22 @@ public class BinarySearchTreeP1 {
         return root;
     }
 
+    // Print in Range --------------------------------
+    public static void printInRange(Node root, int range1, int range2) {
+        if (root == null) {
+            return;
+        }
+        if (root.data >= range1 && root.data <= range2) { // Root in range
+            printInRange(root.left, range1, range2);
+            System.out.print(root.data + " ");
+            printInRange(root.right, range1, range2);
+        } else if (root.data < range1) { // Root less than range1
+            printInRange(root.right, range1, range2);
+        } else { // Root greater than range2
+            printInRange(root.left, range1, range2);
+        }
+    }
+
     public static void main(String[] args) {
         /* 
          * Introduction Binary Search Tree (BTS) -------------------------------- 
@@ -131,5 +147,12 @@ public class BinarySearchTreeP1 {
         System.out.println("Delete Node key : " + key2);
         root2 = delete(root2, key2);
         inorder(root2);
+        System.out.println("\n");
+
+        // Print in Range --------------------------------
+        int range1 = 4;
+        int range2 = 12;
+        System.out.print("Print in Range " + range1 + " to " + range2 + " : ");
+        printInRange(root2, range1, range2);
     }
 }
