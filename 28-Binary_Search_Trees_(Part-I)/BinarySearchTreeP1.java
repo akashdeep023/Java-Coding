@@ -51,6 +51,38 @@ public class BinarySearchTreeP1 {
         }
     }
 
+    // Delete a Node --------------------------------
+    public static Node delete(Node root, int key) {
+        if (root.data < key) {
+            root.right = delete(root.right, key);
+        } else if (root.data > key) {
+            root.left = delete(root.left, key);
+        } else {
+            // case-1 leaf node
+            if (root.left == null && root.right == null) {
+                return null;
+            }
+            // case-2 single child
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+            // case-3 both children
+            Node IS = findInorderSuccessor(root.right);
+            root.data = IS.data;
+            root.right = delete(root.right, IS.data);
+        }
+        return root;
+    }
+
+    public static Node findInorderSuccessor(Node root) { // Min value in Right Subtree
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
         /* 
          * Introduction Binary Search Tree (BTS) -------------------------------- 
@@ -85,5 +117,19 @@ public class BinarySearchTreeP1 {
         } else {
             System.out.println("Not Found");
         }
+        System.out.println();
+
+        // Delete a Node --------------------------------
+        int values2[] = { 8, 5, 3, 1, 4, 6, 10, 11, 14 };
+        Node root2 = null;
+        for (int i = 0; i < values2.length; i++) {
+            root2 = insert(root2, values2[i]);
+        }
+        inorder(root2);
+        System.out.println();
+        int key2 = 5;
+        System.out.println("Delete Node key : " + key2);
+        root2 = delete(root2, key2);
+        inorder(root2);
     }
 }
