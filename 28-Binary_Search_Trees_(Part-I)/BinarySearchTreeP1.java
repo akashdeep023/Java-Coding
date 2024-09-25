@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BinarySearchTreeP1 {
     // BST Node is Same Structure of BT Node 
     static class Node {
@@ -53,6 +55,10 @@ public class BinarySearchTreeP1 {
 
     // Delete a Node --------------------------------
     public static Node delete(Node root, int key) {
+        if (root == null) { // Key not found in tree
+            System.out.println("Key not found in tree");
+            return null;
+        }
         if (root.data < key) {
             root.right = delete(root.right, key);
         } else if (root.data > key) {
@@ -99,6 +105,28 @@ public class BinarySearchTreeP1 {
         }
     }
 
+    // Root to Leaf Path --------------------------------
+    public static void printRootToLeaf(Node root, ArrayList<Integer> path) {
+        if (root == null) {
+            return;
+        }
+        path.add(root.data);
+        if (root.left == null && root.right == null) {
+            printPath(path);
+            // return;
+        }
+        printRootToLeaf(root.left, path);
+        printRootToLeaf(root.right, path);
+        path.remove(path.size() - 1); // last element remove
+    }
+
+    public static void printPath(ArrayList<Integer> path) {
+        for (int i = 0; i < path.size(); i++) {
+            System.out.print(path.get(i) + "->");
+        }
+        System.out.println("Null");
+    }
+
     public static void main(String[] args) {
         /* 
          * Introduction Binary Search Tree (BTS) -------------------------------- 
@@ -143,16 +171,24 @@ public class BinarySearchTreeP1 {
         }
         inorder(root2);
         System.out.println();
-        int key2 = 5;
+        int key2 = 9; // 5;
         System.out.println("Delete Node key : " + key2);
         root2 = delete(root2, key2);
         inorder(root2);
         System.out.println("\n");
 
         // Print in Range --------------------------------
+        // 8, 5, 3, 1, 4, 6, 10, 11, 14 
         int range1 = 4;
         int range2 = 12;
         System.out.print("Print in Range " + range1 + " to " + range2 + " : ");
         printInRange(root2, range1, range2);
+        System.out.println("\n");
+
+        // Root to Leaf Path --------------------------------
+        // 8, 5, 3, 1, 4, 6, 10, 11, 14 
+        ArrayList<Integer> path = new ArrayList<>();
+        System.out.println("Print Root to Leaf Path :-");
+        printRootToLeaf(root2, path);
     }
 }
