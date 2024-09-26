@@ -141,6 +141,18 @@ public class BinarySearchTreeP1 {
                 isValidBST(root.right, root, max);
     }
 
+    // Mirror a BST --------------------------------
+    public static Node mirror(Node root) {
+        if (root == null) { // base case
+            return null;
+        }
+        Node leftST = mirror(root.left);
+        Node rightST = mirror(root.right);
+        root.left = rightST;
+        root.right = leftST;
+        return root;
+    }
+
     public static void main(String[] args) {
         /* 
          * Introduction Binary Search Tree (BTS) -------------------------------- 
@@ -161,6 +173,15 @@ public class BinarySearchTreeP1 {
 
         // Build a Binary Search Tree (BST) --------------------------------
         int values[] = { 5, 1, 3, 4, 2, 7 };
+        /*
+         *            5
+         *           / \
+         *          1   7 
+         *           \
+         *            3
+         *           / \
+         *          2   4
+         */
         Node root = null;
         for (int i = 0; i < values.length; i++) {
             root = insert(root, values[i]);
@@ -179,6 +200,15 @@ public class BinarySearchTreeP1 {
 
         // Delete a Node --------------------------------
         int values2[] = { 8, 5, 3, 1, 4, 6, 10, 11, 14 };
+        /*
+         *            8
+         *           / \
+         *          5   10
+         *         / \   \
+         *        3   6   11
+         *       / \       \
+         *      1   4       14
+         */
         Node root2 = null;
         for (int i = 0; i < values2.length; i++) {
             root2 = insert(root2, values2[i]);
@@ -208,10 +238,32 @@ public class BinarySearchTreeP1 {
 
         // Validate BST --------------------------------
         System.out.print("Validate BST : " + isValidBST(root2, null, null) + "\n");
+        /*
+         *        1
+         *       / \   -> Not valid BST
+         *      1   1
+         */
         Node root3 = new Node(1);
         root3.left = new Node(1);
         root3.right = new Node(1);
         System.out.print("Validate BST : " + isValidBST(root3, null, null));
+        System.out.println("\n");
+
+        // Mirror a BST --------------------------------
+        /*
+         *            8                           8
+         *           / \                         / \
+         *          5   10                     10   5
+         *         / \   \        Mirror ->    /   / \
+         *        3   6   11                 11   6   3
+         *       / \       \                 /       / \
+         *      1   4       14              14      4   1
+         */
+        System.out.print("Original BST Inorder Traversal : ");
+        inorder(root2);
+        System.out.println();
+        System.out.print("Mirror BST Inorder Traversal : ");
+        inorder(mirror(root2));
 
     }
 }
