@@ -127,6 +127,20 @@ public class BinarySearchTreeP1 {
         System.out.println("Null");
     }
 
+    // Validate BST --------------------------------
+    public static boolean isValidBST(Node root, Node min, Node max) {
+        if (root == null) { // base case ya null valid
+            return true;
+        }
+        if (min != null && root.data <= min.data) { // root.data less than ya equal min.data
+            return false;
+        } else if (max != null && root.data >= max.data) { // root.data greater than ya equal max.data
+            return false;
+        }
+        return isValidBST(root.left, min, root) &&
+                isValidBST(root.right, root, max);
+    }
+
     public static void main(String[] args) {
         /* 
          * Introduction Binary Search Tree (BTS) -------------------------------- 
@@ -190,5 +204,14 @@ public class BinarySearchTreeP1 {
         ArrayList<Integer> path = new ArrayList<>();
         System.out.println("Print Root to Leaf Path :-");
         printRootToLeaf(root2, path);
+        System.out.println();
+
+        // Validate BST --------------------------------
+        System.out.print("Validate BST : " + isValidBST(root2, null, null) + "\n");
+        Node root3 = new Node(1);
+        root3.left = new Node(1);
+        root3.right = new Node(1);
+        System.out.print("Validate BST : " + isValidBST(root3, null, null));
+
     }
 }
