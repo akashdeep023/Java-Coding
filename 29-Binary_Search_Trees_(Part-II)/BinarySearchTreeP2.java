@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class BinarySearchTreeP2 {
     // BST Node is Same Structure of BT Node 
@@ -65,6 +66,45 @@ public class BinarySearchTreeP2 {
         return root;
     }
 
+    // Size of largest BST in BT --------------------------------
+    static class Info { // Store Information of node
+        boolean isBST;
+        int size;
+        int min;
+        int max;
+
+        public Info(boolean isBST, int size, int min, int max) {
+            this.isBST = isBST;
+            this.size = size;
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    public static int maxBST = 0; // static size of maxBST
+    public static Node maxBSTNode = null; // static Node of maxBST
+
+    public static Info largestBST(Node root) {
+        if (root == null) { // base case
+            return new Info(true, 0, Integer.MAX_VALUE, Integer.MIN_VALUE);
+        }
+        Info leftInfo = largestBST(root.left);
+        Info rightInfo = largestBST(root.right);
+        int size = leftInfo.size + rightInfo.size + 1; // size (leftsz + rightsz + self(1))
+        int min = Math.min(root.data, Math.min(leftInfo.min, rightInfo.min)); // min(leftsz, rightsz, self)
+        int max = Math.max(root.data, Math.max(leftInfo.max, rightInfo.max)); // max(leftsz, rightsz, self)
+
+        if (root.data <= leftInfo.max || root.data >= rightInfo.min) { // Not valid BST
+            return new Info(false, size, min, max);
+        }
+        if (leftInfo.isBST && rightInfo.isBST) {
+            maxBST = Math.max(maxBST, size); // Update maxBST size
+            maxBSTNode = root;
+            return new Info(true, size, min, max);
+        }
+        return new Info(false, size, min, max);
+    }
+
     public static void main(String[] args) {
         // Sorted array to Balanced BST --------------------------------
         /*
@@ -99,6 +139,29 @@ public class BinarySearchTreeP2 {
         preorder(root2);
         System.out.println();
         preorder(convertBalanceBST(root2));
+        System.out.println("\n");
 
+        // Size of largest BST in BT --------------------------------
+        /*
+        *            50
+        *           /  \                     60
+        *         30    60                  /  \
+        *         / \   / \       ->       45   70  (Size -> 5)
+        *        5  20 45  70                   / \
+        *                  / \                 65  80
+        *                65   80
+        */
+        Node root3 = new Node(50);
+        root3.left = new Node(30);
+        root3.left.left = new Node(5);
+        root3.left.right = new Node(20);
+        root3.right = new Node(60);
+        root3.right.left = new Node(45);
+        root3.right.right = new Node(70);
+        root3.right.right.left = new Node(65);
+        root3.right.right.right = new Node(80);
+        largestBST(root3);
+        System.out.println("Size of largest BST : " + maxBST); // 5
+        System.out.println("Node of BST : " + maxBSTNode.data); // 60
     }
 }
