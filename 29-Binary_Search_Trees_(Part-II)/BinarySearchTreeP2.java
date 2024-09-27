@@ -105,6 +105,41 @@ public class BinarySearchTreeP2 {
         return new Info(false, size, min, max);
     }
 
+    // Merge 2 BST --------------------------------
+    public static Node mergeBSTs(Node bst1, Node bst2) {
+        // Step 1: Bst1 inorder sequence
+        ArrayList<Integer> inorder1 = new ArrayList<>();
+        getInorder(bst1, inorder1); // Bst to ArrayList
+
+        // Step 2: Bst2 inorder sequence
+        ArrayList<Integer> inorder2 = new ArrayList<>();
+        getInorder(bst2, inorder2); // Bst to ArrayList
+
+        // Step 3: Merge inorder sequence (inorder1, inorder2)
+        ArrayList<Integer> finalInorder = merge(inorder1, inorder2); // Merge 2 ArrayList 
+
+        // Step 4: Create Balance BST
+        return balancedBST2(finalInorder, 0, finalInorder.size() - 1);
+    }
+
+    public static ArrayList<Integer> merge(ArrayList<Integer> arr1, ArrayList<Integer> arr2) { // Merge 2 Sorted inorder ArrayList
+        ArrayList<Integer> result = new ArrayList<>();
+        while (!arr1.isEmpty() && !arr2.isEmpty()) {
+            if (arr1.get(0) < arr2.get(0)) {
+                result.add(arr1.remove(0));
+            } else {
+                result.add(arr2.remove(0));
+            }
+        }
+        while (!arr1.isEmpty()) { // Extra element add
+            result.add(arr1.remove(0));
+        }
+        while (!arr2.isEmpty()) { // Extra element add
+            result.add(arr2.remove(0));
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         // Sorted array to Balanced BST --------------------------------
         /*
@@ -162,6 +197,27 @@ public class BinarySearchTreeP2 {
         root3.right.right.right = new Node(80);
         largestBST(root3);
         System.out.println("Size of largest BST : " + maxBST); // 5
-        System.out.println("Node of BST : " + maxBSTNode.data); // 60
+        System.out.println("Root Node of BST : " + maxBSTNode.data); // 60
+        System.out.println();
+
+        // Merge 2 BST --------------------------------
+        /*
+         *                              3
+         *      2         9           /   \
+         *     / \   +   / \   ->    1     9    preorder traversal - 3,1,2,9,4,12
+         *    1   4     3  12         \   / \
+         *                             2 4  12
+         */
+        Node bst1 = new Node(2);
+        bst1.left = new Node(1);
+        bst1.right = new Node(4);
+
+        Node bst2 = new Node(9);
+        bst2.left = new Node(3);
+        bst2.right = new Node(12);
+
+        Node finalBst = mergeBSTs(bst1, bst2);
+        preorder(finalBst); // 3,1,2,9,4,12
+
     }
 }
