@@ -105,20 +105,20 @@ public class BinarySearchTreeP2 {
         return new Info(false, size, min, max);
     }
 
-    // Merge 2 BST --------------------------------
+    // Merge 2 BST -------------------------------- TC -> O(n + M) -> Linear TC
     public static Node mergeBSTs(Node bst1, Node bst2) {
-        // Step 1: Bst1 inorder sequence
+        // Step 1: Bst1 inorder sequence - O(n)
         ArrayList<Integer> inorder1 = new ArrayList<>();
         getInorder(bst1, inorder1); // Bst to ArrayList
 
-        // Step 2: Bst2 inorder sequence
+        // Step 2: Bst2 inorder sequence - O(n)
         ArrayList<Integer> inorder2 = new ArrayList<>();
         getInorder(bst2, inorder2); // Bst to ArrayList
 
-        // Step 3: Merge inorder sequence (inorder1, inorder2)
+        // Step 3: Merge inorder sequence (inorder1, inorder2) - O(n)
         ArrayList<Integer> finalInorder = merge(inorder1, inorder2); // Merge 2 ArrayList 
 
-        // Step 4: Create Balance BST
+        // Step 4: Create Balance BST - O(n)
         return balancedBST2(finalInorder, 0, finalInorder.size() - 1);
     }
 
