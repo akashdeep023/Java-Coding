@@ -39,7 +39,7 @@ public class HeapC {
             return data;
         }
 
-        // helper function to fix heap
+        // helper function to fix heap - Fix to Min Heap
         private void heapify(int i) { // TC -> O(logn)
             int left = 2 * i + 1;
             int right = 2 * i + 2;
@@ -137,6 +137,9 @@ public class HeapC {
             System.out.println(pq.peek());
             pq.remove();
         }
-        // Output -> 1,2,4,5 (PriorityQueue)
+        // Output -> 1,2,4,5 (PriorityQueue) 
+
+        // All function is worked for Min Heap 
+        // Need Max Heap than change direction in add and heapify functions
     }
 }
