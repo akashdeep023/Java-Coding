@@ -1,4 +1,33 @@
+import java.util.*;
+
 public class HeapC {
+    static class Heap {
+        ArrayList<Integer> arr = new ArrayList<>();
+
+        // Insert in Heap --------------------------------
+        public void add(int data) { // TC -> O(logn)
+            // add at last index
+            arr.add(data); // O(1)
+            // fix heap
+            int ci = arr.size() - 1; // index of child
+            int pi = (ci - 1) / 2; // index of parent
+            while (arr.get(pi) > arr.get(ci)) { // O(logn)
+                int temp = arr.get(pi); // store pi value
+                arr.set(pi, arr.get(ci)); // pi = ci value
+                arr.set(ci, temp); // ci = temp(parent) value
+                ci = pi;
+                pi = (ci - 1) / 2;
+            }
+        }
+
+        public void print() {
+            for (int i = 0; i < arr.size(); i++) {
+                System.out.print(arr.get(i) + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         /* 
          * Heap Introduction --------------------------------
@@ -32,5 +61,16 @@ public class HeapC {
          * Left child idx = 2i + 1
          * Right child idx = 2i + 2 
         */
+        // Insert in Heap --------------------------------
+        Heap h = new Heap();
+        h.add(2);
+        h.add(3);
+        h.add(4);
+        h.add(5);
+        h.add(10);
+        h.print(); // 2 3 4 5 10 
+        h.add(1); // insert 1
+        h.print(); // 1 3 2 5 10 4
+
     }
 }
