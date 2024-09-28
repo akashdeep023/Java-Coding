@@ -20,6 +20,11 @@ public class HeapC {
             }
         }
 
+        // Peek(Get min) from Heap --------------------------------
+        public int peek() {
+            return arr.get(0);
+        }
+
         public void print() {
             for (int i = 0; i < arr.size(); i++) {
                 System.out.print(arr.get(i) + " ");
@@ -71,6 +76,10 @@ public class HeapC {
         h.print(); // 2 3 4 5 10 
         h.add(1); // insert 1
         h.print(); // 1 3 2 5 10 4
+        System.out.println();
+
+        // Peek(Get min) from Heap --------------------------------
+        System.out.println("Peek from Heap : " + h.peek()); // 1
 
     }
 }
