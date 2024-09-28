@@ -21,15 +21,56 @@ public class HeapC {
         }
 
         // Peek(Get min) from Heap --------------------------------
-        public int peek() {
+        public int peek() { // TC -> O(1)
             return arr.get(0);
         }
 
+        // Remove(delete) from Heap --------------------------------
+        public int remove() { // TC -> O(logn)
+            int data = arr.get(0);
+            // 1st & last element Swap
+            int temp = arr.get(arr.size() - 1);
+            arr.set(arr.size() - 1, arr.get(0));
+            arr.set(0, temp);
+            // remove last idx
+            arr.remove(arr.size() - 1); // first element before swaped
+            // fix heap
+            heapify(0); // root index pass
+            return data;
+        }
+
+        // helper function to fix heap
+        private void heapify(int i) { // TC -> O(logn)
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+            int minIdx = i; // supposed i is min index
+            // find min index
+            if (left < arr.size() && arr.get(minIdx) > arr.get(left)) {
+                minIdx = left;
+            }
+            if (right < arr.size() && arr.get(minIdx) > arr.get(right)) {
+                minIdx = right;
+            }
+            if (minIdx != i) { // swap root index change
+                int temp = arr.get(i);
+                arr.set(i, arr.get(minIdx));
+                arr.set(minIdx, temp);
+                heapify(minIdx); // minIdx = root index (minIdx pass to fix child node)
+            }
+
+        }
+
+        // Print Heap
         public void print() {
             for (int i = 0; i < arr.size(); i++) {
                 System.out.print(arr.get(i) + " ");
             }
             System.out.println();
+        }
+
+        // Empty function to check arrayList is empty or not
+        public boolean isEmpty() {
+            return arr.size() == 0;
         }
     }
 
@@ -80,6 +121,9 @@ public class HeapC {
 
         // Peek(Get min) from Heap --------------------------------
         System.out.println("Peek from Heap : " + h.peek()); // 1
+        System.out.println();
 
+        // Remove(delete) from Heap --------------------------------
+        System.out.println("Remove from Heap : " + h.remove());
     }
 }
