@@ -125,5 +125,18 @@ public class HeapC {
 
         // Remove(delete) from Heap --------------------------------
         System.out.println("Remove from Heap : " + h.remove());
+        System.out.println();
+
+        // Heap performs PriorityQueue Data Structure ---
+        Heap pq = new Heap();
+        pq.add(2);
+        pq.add(4);
+        pq.add(1);
+        pq.add(5);
+        while (!pq.isEmpty()) {
+            System.out.println(pq.peek());
+            pq.remove();
+        }
+        // Output -> 1,2,4,5 (PriorityQueue)
     }
 }
