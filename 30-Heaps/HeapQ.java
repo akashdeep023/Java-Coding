@@ -34,6 +34,23 @@ public class HeapQ {
         for (int i = 0; i < k; i++) {
             System.out.print("C" + pq.peek().idx + "-" + pq.remove().distSq + " ");
         }
+        System.out.println("\n");
 
+        // Connect N ropes with Minimum Cost --------------------------------
+        // Given are N ropes of different lengths, the task is to connect these ropes into one rope with
+        // minimum cost, such that the cost to connect two ropes is equal to the sum of their lengths.
+        // int ropes[] = { 4, 3, 2, 6 }; // Output Cost : 29
+        int ropes[] = { 2, 3, 3, 4, 6 }; // Output Cost : 41
+        PriorityQueue<Integer> rpq = new PriorityQueue<>();
+        for (int i = 0; i < ropes.length; i++) {
+            rpq.add(ropes[i]);
+        }
+        int cost = 0;
+        while (rpq.size() > 1) {
+            int length = rpq.remove() + rpq.remove();
+            cost += length;
+            rpq.add(length);
+        }
+        System.out.println("Min cost of connecting n ropes : " + cost);
     }
 }
