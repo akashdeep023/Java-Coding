@@ -1,6 +1,7 @@
 import java.util.PriorityQueue;
 
 public class HeapQ {
+    // Nearby Cars--------------------------------
     static class Point implements Comparable<Point> { // use Comarable interface bases on Point class
         int x;
         int y;
@@ -17,6 +18,26 @@ public class HeapQ {
         @Override
         public int compareTo(Point p2) {
             return this.distSq - p2.distSq; // ascending order
+        }
+    }
+
+    // Weakest Soldier --------------------------------
+    static class Row implements Comparable<Row> {
+        int soldiers;
+        int idx;
+
+        public Row(int soldiers, int idx) {
+            this.soldiers = soldiers;
+            this.idx = idx;
+        }
+
+        @Override
+        public int compareTo(Row j) {
+            if (this.soldiers == j.soldiers) {
+                return this.idx - j.idx;
+            } else {
+                return this.soldiers - j.soldiers;
+            }
         }
     }
 
@@ -52,5 +73,35 @@ public class HeapQ {
             rpq.add(length);
         }
         System.out.println("Min cost of connecting n ropes : " + cost);
+        System.out.println();
+
+        // Weakest Soldier --------------------------------
+        // We are given an mXn binary matrix of 1's (soldiers) and 0's (civilians). The soldiers are
+        // positioned in front of the civilians. That is, all the 1's will appear to the left of 
+        // all the 0's in each ros.
+        // A row i is weaker than a row j if one of the following is true:
+        // - The number of soldiers in row i is less than the number of soldirs in row j.
+        // - Both rows have the same number of soldirs and i<j.
+        // Find the K weakest row.
+        // m = 4, n = 4, k = 2 ans = row0 & row2
+        int army[][] = {
+                { 1, 0, 0, 0 },
+                { 1, 1, 1, 1 },
+                { 1, 0, 0, 0 },
+                { 1, 0, 0, 0 },
+        };
+        PriorityQueue<Row> apq = new PriorityQueue<>();
+        for (int i = 0; i < army.length; i++) {
+            int count = 0;
+            for (int j = 0; j < army.length; j++) {
+                count += army[i][j];
+            }
+            apq.add(new Row(count, i));
+        }
+        System.out.print("Weakest soldier row : ");
+        for (int i = 0; i < 2; i++) {
+            System.out.print("Row" + apq.remove().idx + " ");
+        }
+        System.out.println();
     }
 }
