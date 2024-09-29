@@ -41,6 +41,23 @@ public class HeapQ {
         }
     }
 
+    // Sliding Window Maximum  --------------------------------
+    static class Pair implements Comparable<Pair> {
+        int val;
+        int idx;
+
+        public Pair(int val, int idx) {
+            this.val = val;
+            this.idx = idx;
+        }
+
+        @Override
+        public int compareTo(Pair p2) {
+            // return this.val - p2.val; // Ascending comparison
+            return p2.val - this.val; // Descending comparison
+        }
+    }
+
     public static void main(String[] args) {
         // Nearby Cars --------------------------------
         // We are given N points in a 2D plane which are locations of N cars.
@@ -103,5 +120,30 @@ public class HeapQ {
             System.out.print("Row" + apq.remove().idx + " ");
         }
         System.out.println();
+
+        // Sliding Window Maximum -------------------------------- TC -> O(n logk)
+        // Maximum of all Subarrays of Size K ---
+        // int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // Output -> 3 4 5 6 7 8 9 10
+        int arr[] = { 1, 3, -1, -3, 5, 3, 6, 7 }; // Output -> 3 3 5 5 6 7
+        int K = 3; // window size
+        int res[] = new int[arr.length - K + 1]; // n-k+1
+        PriorityQueue<Pair> ppq = new PriorityQueue<Pair>(); // All ready descending priority queue - Comparator.reverseOrder()
+        // Add 1st Window
+        ppq.add(new Pair(arr[0], 0));
+        ppq.add(new Pair(arr[1], 1));
+        ppq.add(new Pair(arr[2], 2));
+        res[0] = ppq.peek().val; // max value of 1st Window
+        // Add Next Window
+        for (int i = K; i < arr.length; i++) {
+            while (!ppq.isEmpty() && ppq.peek().idx <= i - K) { // Window index not in range
+                ppq.remove();
+            }
+            ppq.add(new Pair(arr[i], i));
+            res[i - K + 1] = ppq.peek().val;
+        }
+        // Print Max Window Size
+        for (int i = 0; i < res.length; i++) {
+            System.out.print(res[i] + " ");
+        }
     }
 }
