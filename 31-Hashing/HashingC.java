@@ -1,4 +1,5 @@
 import java.util.HashMap; // HashMap import from JCF
+import java.util.Set;
 
 public class HashingC {
     public static void main(String[] args) {
@@ -56,5 +57,23 @@ public class HashingC {
         System.out.println("Clear HashMap");
         System.out.println("HashMap is empty : " + hm.isEmpty()); // true (0 pairs exist);
         System.out.println("Print HashMap : " + hm);
+        System.out.println();
+
+        // Create new HashMap ---
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("India", 100);
+        map.put("China", 150);
+        map.put("US", 50);
+        map.put("Indonesia", 6);
+        map.put("Nepal", 5);
+        System.out.println(map);
+
+        // Iteration on HashMap --------------------------------
+        // using set data structure ---
+        Set<String> keys = map.keySet(); // to store all keys (unordered form) TC -> O(1)
+        System.out.println(keys); // print all keys
+        for (String key : keys) { // Loop on keys set
+            System.out.println("Key=" + key + ", value=" + map.get(key));
+        }
     }
 }
