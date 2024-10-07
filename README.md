@@ -96,3 +96,24 @@
 
 🤞 1. Stack -> LIFO Data Structure (Last in First out) element \
 🤞 2. Queue -> FIFO Data Structure (First in First out) element
+
+**Internally Use**
+
+```
+Hashing (Use Two data structures to generate)
+├── map (3 Types)
+│   ├── HashMap (Unordered)
+│   ├── LinkedHashMap (Ordered)
+│   └── TreeMap (Sorted in ascending order)
+|
+└── set (3 Types)
+    ├── HashSet (Unordered)
+    ├── LinkedHashSet (Ordered)
+    └── TreeSet (Sorted in ascending order)
+```
+
+> `HashSet` -> `HashMap` -> `LinkedList` (Unordered)
+
+> `LinkedHashSet` -> `LinkedHashMap` -> `Doubly LinkedList` (Ordered)
+
+> `TreeSet` -> `TreeMap` -> `Red Black` Self Balancing BST (Sorted in ascending order)
