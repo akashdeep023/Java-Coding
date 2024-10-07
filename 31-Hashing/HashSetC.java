@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class HashSetC {
     public static void main(String[] args) {
@@ -42,6 +43,25 @@ public class HashSetC {
 
         // Is empty ---
         System.out.println("Check is Empty : " + hs.isEmpty());
+        System.out.println();
 
+        // Iteration on HashSet --------------------------------
+        HashSet<String> cities = new HashSet<>();
+        cities.add("Delhi");
+        cities.add("Patna");
+        cities.add("Mumbai");
+        cities.add("Bengaluru");
+
+        // 1st Method ---
+        Iterator<String> it = cities.iterator(); // Iterator ya Iterator<String>
+        while (it.hasNext()) {
+            System.out.println(it.next()); // Unordered 
+        }
+        System.out.println();
+
+        // 2nd Method --- using foreach loop
+        for (String city : cities) {
+            System.out.println(city);
+        }
     }
 }
