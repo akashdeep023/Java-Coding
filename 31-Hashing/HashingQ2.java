@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.lang.Math;
 
 public class HashingQ2 {
     // Find itinerary from tickets -------------------------------- TC -> O(n)
@@ -77,7 +78,21 @@ public class HashingQ2 {
             start = map.get(start);
             System.out.print(" -> " + start); // print next journey
         }
-        System.out.println();
+        System.out.println("\n");
 
+        // Largest Subarray With Sum 0 -------------------------------- TC ->  O(n) (Brute Force -> O(n^2))
+        int nums[] = { 15, -2, 2, -8, 1, 7, 10, 23 };
+        HashMap<Integer, Integer> hm = new HashMap<>(); // map(sum,idx)
+        int sum = 0;
+        int len = 0;
+        for (int j = 0; j < nums.length; j++) {
+            sum += nums[j];
+            if (hm.containsKey(sum)) {
+                len = Math.max(len, j - hm.get(sum));
+            } else {
+                hm.put(sum, j);
+            }
+        }
+        System.out.println("Largest SubArray length : " + len);
     }
 }
