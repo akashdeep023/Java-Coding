@@ -1,6 +1,21 @@
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class HashingQ2 {
+    // Find itinerary from tickets -------------------------------- TC -> O(n)
+    public static String getStart(HashMap<String, String> tickets) {
+        HashSet<String> revSet = new HashSet<>(); // using HashSet
+        for (String from : tickets.keySet()) {
+            revSet.add(tickets.get(from)); // set (tickets.get(from) -> to)
+        }
+        for (String from : tickets.keySet()) {
+            if (!revSet.contains(from)) { // to -> not exist from
+                return from; // starting (from)
+            }
+        }
+        return null; // for removing error
+    }
+
     public static void main(String[] args) {
         // Count Distinct Elements -------------------------------- TC -> O(n)
         int num[] = { 4, 3, 2, 5, 6, 7, 3, 4, 2, 1 };
@@ -43,5 +58,26 @@ public class HashingQ2 {
         }
         System.out.println("Intersection count : " + count);
         System.out.println(intersection);
+        System.out.println();
+
+        // Find itinerary from tickets -------------------------------- TC -> O(n)
+        String tickets[][] = {
+                { "Chennai", "Bengalure" }, // from -> to
+                { "Mumbai", "Delhi" },
+                { "Gao", "Chennai" },
+                { "Delhi", "Gao" },
+        };
+        HashMap<String, String> map = new HashMap<>();
+        for (int i = 0; i < tickets.length; i++) {
+            map.put(tickets[i][0], tickets[i][1]);
+        }
+        String start = getStart(map);
+        System.out.print(start); // print start
+        for (int i = 0; i < map.size(); i++) {
+            start = map.get(start);
+            System.out.print(" -> " + start); // print next journey
+        }
+        System.out.println();
+
     }
 }
