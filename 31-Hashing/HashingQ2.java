@@ -94,5 +94,24 @@ public class HashingQ2 {
             }
         }
         System.out.println("Largest SubArray length : " + len);
+        System.out.println();
+
+        // Subarray Sum equal to K --------------------------------
+        int arr[] = { 10, 2, -2, -20, 10 };
+        int K = -10;
+        HashMap<Integer, Integer> hmap = new HashMap<>(); // map(sum,count)
+        int sumN = 0;
+        int ans = 0; // count of subarray
+
+        hmap.put(0, 1); // (sum,count) add for single element = K
+        for (int j = 0; j < arr.length; j++) {
+            sumN += arr[j];
+            if (hmap.containsKey(sumN - K)) { // sumN(J)-K == sumN(i)
+                ans += hmap.get(sumN - K);
+            }
+            hmap.put(sumN, hmap.getOrDefault(sumN, 0) + 1); // sumN(i),frequency
+        }
+        System.out.println("Total Subarray count : " + ans);
+
     }
 }
