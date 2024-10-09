@@ -66,6 +66,25 @@ public class TriesC3 {
         return count + 1; // All children nodes + self node
     }
 
+    // Longest Word with all Prefixes --------------------------------
+    public static String longWord = "";
+
+    public static void longestWord(Node root, StringBuilder temp) {
+        if (root == null) {
+            return;
+        }
+        for (int i = 0; i < root.children.length; i++) { // Alphabeticaly smaller (a to z)
+            if (root.children[i] != null && root.children[i].eow == true) {
+                temp = temp.append((char) (i + 'a'));
+                if (temp.length() > longWord.length()) {
+                    longWord = temp.toString();
+                }
+                longestWord(root.children[i], temp);
+                temp.deleteCharAt(temp.length() - 1); // backtrack
+            }
+        }
+    }
+
     public static void main(String[] args) {
         // StartsWith Problem --------------------------------
         // Create a function boolean startWith(String prefix) for a trie.
@@ -83,10 +102,21 @@ public class TriesC3 {
         // Count Unique Substrings --------------------------------
         // Given a string of length n of lowercase alphabet characters, we need to count total number 
         // of distinct substrings of this string.
-        String str = "ababa"; // Output -> 10
-        for (int i = 0; i < str.length(); i++) { // Step-1 Suffix -> Step-2 Insert in trie
-            insert(str.substring(i));
+        // String str = "ababa"; // Output -> 10
+        // for (int i = 0; i < str.length(); i++) { // Step-1 Suffix -> Step-2 Insert in trie
+        //     insert(str.substring(i));
+        // }
+        // System.out.println("Count of unique substring : " + countNodes(root)); // Step-3 count all Nodes
+        // System.out.println();
+
+        // Longest Word with all Prefixes --------------------------------
+        // Find the longest string in words such tat every prefix of it is also in words.
+        String arr[] = { "a", "banana", "app", "appl", "ap", "apply", "apple" };
+        for (int i = 0; i < arr.length; i++) {
+            insert(arr[i]);
         }
-        System.out.println("Count of unique substring : " + countNodes(root)); // Step-3 count all Nodes
+        longestWord(root, new StringBuilder(""));
+        System.out.println("Longest word : " + longWord);
+
     }
 }
