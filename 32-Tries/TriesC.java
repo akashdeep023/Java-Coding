@@ -39,29 +39,52 @@ public class TriesC {
         return curr.eow == true; // last letter of eow is true then return true otherwise false
     }
 
+    // Word Break Problem -------------------------------- TC -> O(L) L = key.length()
+    public static boolean wordBreak(String key) {
+        if (key.length() == 0) { // base case
+            return true;
+        }
+        for (int i = 1; i <= key.length(); i++) { // 1 to key.length()
+            if (search(key.substring(0, i)) && wordBreak(key.substring(i))) { // 1st Substring && 2nd Substring true then return true
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         // Tries --------------------------------
         // Tries = Prefix tree = Retrievel trees
         // Multiple pointers/Nodes (K-ary tree)
 
-        // Creating a Trie --------------------------------
-        String words[] = { "the", "a", "there", "their", "any", "thee" };
+        // // Creating a Trie --------------------------------
+        // String words[] = { "the", "a", "there", "their", "any", "thee" };
 
-        // Insertion --------------------------------
-        for (int i = 0; i < words.length; i++) {
-            insert(words[i]);
+        // // Insertion --------------------------------
+        // for (int i = 0; i < words.length; i++) {
+        //     insert(words[i]);
+        // }
+
+        // // Searching --------------------------------
+        // String key = "thee";
+        // String key2 = "thor";
+        // String key3 = "any";
+        // String key4 = "an";
+        // System.out.println(key + " key is exist : " + search(key));
+        // System.out.println(key2 + " key is exist : " + search(key2));
+        // System.out.println(key3 + " key is exist : " + search(key3));
+        // System.out.println(key4 + " key is exist : " + search(key4));
+        // System.out.println();
+
+        // Word Break Problem --------------------------------
+        // Given an input string and a dictionary of words, find out if the input string
+        // can be broken into a space-separated sequence of dictionary words.
+        String arr[] = { "i", "like", "sam", "samsung", "mobile", "ice" };
+        String k = "ilikesamsung"; // key Output -> true
+        for (int i = 0; i < arr.length; i++) {
+            insert(arr[i]);
         }
-
-        // Searching --------------------------------
-        String key = "thee";
-        String key2 = "thor";
-        String key3 = "any";
-        String key4 = "an";
-        System.out.println(key + " key is exist : " + search(key));
-        System.out.println(key2 + " key is exist : " + search(key2));
-        System.out.println(key3 + " key is exist : " + search(key3));
-        System.out.println(key4 + " key is exist : " + search(key4));
-        System.out.println();
+        System.out.println("Word Break : " + wordBreak(k));
 
     }
 }
