@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class GraphsP1 {
     // Create a Graph (Using Adjacency List) --------------------------------
@@ -11,6 +13,24 @@ public class GraphsP1 {
             this.src = src;
             this.dest = dest;
             this.wt = wt;
+        }
+    }
+
+    // BFS Graph Traversal -------------------------------- TC -> O(V+E)
+    public static void bfs(ArrayList<Edge>[] graph) {
+        Queue<Integer> q = new LinkedList<>();
+        boolean[] visited = new boolean[graph.length];
+        q.add(0); // source (starting point)
+        while (!q.isEmpty()) {
+            int curr = q.remove();
+            if (!visited[curr]) { // visite curr
+                System.out.print(curr + " "); // print
+                visited[curr] = true; // visite
+                for (int i = 0; i < graph[curr].size(); i++) { // curr neighbors add in queue 
+                    Edge e = graph[curr].get(i);
+                    q.add(e.dest);
+                }
+            }
         }
     }
 
@@ -91,9 +111,54 @@ public class GraphsP1 {
 
         // 2's neighbors
         System.out.print("2's neighbors : ");
-        for (int i = 0; i < graph[2].size(); i++) {
+        for (int i = 0; i < graph[2].size(); i++) { // TC -> O(E) Where E is Edge length
             Edge e = graph[2].get(i);
             System.out.print(e.dest + " ");
         }
+        System.out.println("\n");
+
+        // Graph Traversal --------------------------------
+        // Breadth First Search (BFS)
+        // Depth First Search (DFS)
+        /*
+         *    1 —— 3
+         *   /     | \
+         *  0      |  5 —— 6
+         *   \     | /
+         *    2 —— 4
+         */
+        int V2 = 7;
+        @SuppressWarnings("unchecked") // Remove Warning
+        ArrayList<Edge>[] graph2 = new ArrayList[V2]; // int[] arr = new int[V];
+        for (int i = 0; i < graph2.length; i++) {
+            graph2[i] = new ArrayList<>(); // null -> empty arraylist initalizes
+        }
+        // 0-vertex
+        graph2[0].add(new Edge(0, 1, 1));
+        graph2[0].add(new Edge(0, 2, 1));
+        // 1-vertex
+        graph2[1].add(new Edge(1, 0, 1));
+        graph2[1].add(new Edge(1, 3, 1));
+        // 2-vertex
+        graph2[2].add(new Edge(2, 0, 1));
+        graph2[2].add(new Edge(2, 4, 1));
+        // 3-vertex
+        graph2[3].add(new Edge(3, 1, 1));
+        graph2[3].add(new Edge(3, 4, 1));
+        graph2[3].add(new Edge(3, 5, 1));
+        // 4-vertex
+        graph2[4].add(new Edge(4, 2, 1));
+        graph2[4].add(new Edge(4, 3, 1));
+        graph2[4].add(new Edge(4, 5, 1));
+        // 5-vertex
+        graph2[5].add(new Edge(5, 3, 1));
+        graph2[5].add(new Edge(5, 4, 1));
+        graph2[5].add(new Edge(5, 6, 1));
+        // 6-vertex
+        graph2[6].add(new Edge(6, 5, 1));
+        // Breadth First Search (BFS) ---
+        System.out.print("BFS Traversing : ");
+        bfs(graph2);
+
     }
 }
