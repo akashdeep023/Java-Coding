@@ -27,6 +27,12 @@ public class GraphsP1 {
          * 
          * 2. Un-Weighted
          *    Ex: Weight of Edge = None
+         * 
+         * Graph Representations (Storing a Graph) --------------------------------
+         * 1. Adjacency List (Important) -> Array<ArrayList><Edge><src,dest,wt> , TC -> O(K) where K is your neighbours length
+         * 2. Adjacency Matrix -> (i,j) connect sotre 1 ya weight otherwise store 0 , TC -> O(V) where V is vertices count
+         * 3. Edge List
+         * 4. 2d Matris (Implicit Graph)
          */
 
     }
