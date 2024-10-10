@@ -33,6 +33,11 @@ public class GraphsP1 {
          * 2. Adjacency Matrix -> (i,j) connect sotre 1 ya weight otherwise store 0 , TC -> O(V) where V is vertices count
          * 3. Edge List
          * 4. 2d Matris (Implicit Graph)
+         * 
+         * Graph Application --------------------------------
+         * Ex: Google Maps, Social Network, Delivery Network (Shortest Cyclic Route), Physics & Chemistry (Atom-Molicules)
+         *     Routing Algorithms, Machine Learning (Computation Graph), Dependency Graph (Windows->VS Code->Extensions)
+         *     Computer Vision (Image Segmentation), Graph Databases (Nebula or neo4g), Research (Human Neurons), etc.
          */
 
     }
