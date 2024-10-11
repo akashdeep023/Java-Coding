@@ -48,6 +48,21 @@ public class GraphsP1 {
         }
     }
 
+    // Has Path (DFS) -------------------------------- TC -> O(V+E)
+    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int dest, boolean[] visited) {
+        if (src == dest) { // base case
+            return true;
+        }
+        visited[src] = true; // visited src
+        for (int i = 0; i < graph[src].size(); i++) {
+            Edge e = graph[src].get(i);
+            if (!visited[e.dest] && hasPath(graph, e.dest, dest, visited)) { // not visited && call for next neighbor
+                return true;
+            }
+        }
+        return false; // not found in graph then return false
+    }
+
     public static void main(String[] args) {
         /* 
          * Introduction --------------------------------
@@ -178,6 +193,14 @@ public class GraphsP1 {
         // Depth First Search (DFS) ---
         System.out.print("DFS Traversing : ");
         dfs(graph2, 0, new boolean[V2]);
+        System.out.println("\n");
+
+        // Has Path --------------------------------
+        // For given src & dest, tell if a path exists from src to dest
+        System.out.print("Has Path " + 0 + " to " + 5 + " : " + hasPath(graph2, 0, 5, new boolean[V2]));
+        System.out.println();
+        System.out.print("Has Path " + 0 + " to " + 7 + " : " + hasPath(graph2, 0, 7, new boolean[V2]));
+        System.out.println();
 
     }
 }
