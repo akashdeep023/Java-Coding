@@ -34,6 +34,20 @@ public class GraphsP1 {
         }
     }
 
+    // DFS Graph Traversal -------------------------------- TC -> O(V+E)
+    public static void dfs(ArrayList<Edge>[] graph, int curr, boolean[] visited) {
+        // visite curr
+        System.out.print(curr + " ");
+        visited[curr] = true;
+        // call for 1st neighbor if is not visited
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+            if (!visited[e.dest]) {
+                dfs(graph, e.dest, visited);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         /* 
          * Introduction --------------------------------
@@ -159,6 +173,11 @@ public class GraphsP1 {
         // Breadth First Search (BFS) ---
         System.out.print("BFS Traversing : ");
         bfs(graph2);
+        System.out.println("\n");
+
+        // Depth First Search (DFS) ---
+        System.out.print("DFS Traversing : ");
+        dfs(graph2, 0, new boolean[V2]);
 
     }
 }
