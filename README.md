@@ -2,6 +2,8 @@
 
 ---
 
+## All chapters in Alpha
+
 🎗️ 01-Welcome_To_Alpha \
 🎗️ 02-Join_Telegram_Channel \
 🎗️ 03-Course_Introduction \
@@ -56,7 +58,7 @@
 
 ---
 
-**5 Additional chapters in Alpha Plus**
+## 5 Additional chapters in Alpha Plus
 
 💫 06. Community_Link \
 💫 07. Extra_Resources \
@@ -64,7 +66,7 @@
 💫 21. Recursion\_(Part-II) \
 💫 28. Stacks\_(Part-II)
 
-**Sorting Algorithms**
+## Sorting Algorithms
 
 ✨ 1. Bubble sort algorithm -> `Basic_Sorting_Algorithms Chapter` \
 ✨ 2. Selection sort algorithm -> `Basic_Sorting_Algorithms Chapter` \
@@ -74,30 +76,44 @@
 ✨ 6. Merge sort algorithm -> `Divide_&_Conquer Chapter` \
 ✨ 7. Quick sort algorithm -> `Divide_&_Conquer Chapter`
 
-**Search Algorithms**
+## Search Algorithms
 
 ✨ 1. Linear search algorithm -> `Arrays Chapter` \
 ✨ 2. Binary search algorithm -> `Arrays Chapter`
 
-**Recursion Concept**
+## Recursion Concept
 
 ✨ 1. Basic of recursion \
 ✨ 2. Divide & Conquer \
 ✨ 3. Backtracking
 
-**Approach**
+## Approach
 
 🎗️ 1. Two pointer approach -> First pointer start index and Last pointer end index \
 🎗️ 2. Slow Fast approach -> Slow increment by one and Fast increment by two
 
 ---
 
-**Type of Data Structure**
+## Type of Data Structure
 
-🤞 1. Stack -> LIFO Data Structure (Last in First out) element \
-🤞 2. Queue -> FIFO Data Structure (First in First out) element
+### Linear Data Structure :
 
-**Internally Use**
+🤞 1. `Array` \
+🤞 2. `ArrayList` \
+🤞 3. `LinkedList` \
+🤞 4. `Stack -> LIFO` \
+🤞 5. `Queue -> FIFO`
+
+### Non-Linear / Hierarchical Data Structure :
+
+🤞 1. `Trees` \
+🤞 2. `Heaps` \
+🤞 3. `Sets` \
+🤞 4. `Maps` \
+🤞 5. `Trie` \
+🤞 6. `Graph`
+
+## Internally Use
 
 ```
 Hashing (Use Two data structures to generate)
