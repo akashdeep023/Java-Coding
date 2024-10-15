@@ -98,7 +98,7 @@ public class GraphsP3_Dijkstra {
         }
         // Print all source to all vertices Path
         for (int i = 0; i < dist.length; i++) {
-            System.out.println("Source " + src + " to distance " + i + " Sorted path : " + dist[i]);
+            System.out.println("Source " + src + " to destination " + i + " Sorted path : " + dist[i]);
         }
     }
 
