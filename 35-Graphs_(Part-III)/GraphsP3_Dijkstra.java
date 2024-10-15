@@ -64,7 +64,7 @@ public class GraphsP3_Dijkstra {
         }
     }
 
-    // Dijkstra Algorithm (Shortest Path Src to All vertices) --------------------------------
+    // Dijkstra Algorithm (Shortest Path Src to All vertices) -------------------------------- TC -> O(V + E logV)
     public static void dijkstra(ArrayList<Edge>[] graph, int src) {
         // Create distances Array & initialize
         int[] dist = new int[graph.length]; // dist[i] = src to i
